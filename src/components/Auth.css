@@ -1,16 +1,41 @@
 .auth-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: 100vh;
-  background: radial-gradient(ellipse at left, #1c1c1c, #000);
+  width: 100vw;
+  overflow: scroll;
+  background: linear-gradient(
+    200deg,
+    #0d0d0d 0%,
+    #000000 26%,
+    #000000 41%,
+    #080000 52%,
+    #100000 70%,
+    #080000 88%,
+    #810000 100%
+  );
   color: white;
   gap: 2rem;
   padding: 1rem;
 }
+/* For Webkit browsers (Chrome, Safari, newer versions of Edge) */
+::-webkit-scrollbar {
+  display: none;
+}
 
+/* For Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* For Internet Explorer and older Edge */
+body {
+  -ms-overflow-style: none;
+}
 .auth-graphic {
   width: 300px;
+  overflow: hidden;
   height: 300px;
   background: #ccc;
   display: flex;
