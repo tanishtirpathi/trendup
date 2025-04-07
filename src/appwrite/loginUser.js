@@ -1,8 +1,10 @@
-export const loginUser = async (email, password) => {
+import authService from "./auth";
+
+export const loginUser = async ({ email, password }) => {
   try {
-    await account.createEmailSession(email, password);
-    alert("Login successful!");
+    const response = await authService.loginUser({ email, password });
+    return response;
   } catch (err) {
-    alert(err.message);
+    throw err;
   }
 };

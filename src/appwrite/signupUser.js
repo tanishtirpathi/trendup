@@ -1,9 +1,10 @@
-// signupUser.js
-export const signupUser = async (email, password, name) => {
+import authService from "./auth";
+
+export const signupUser = async ({ name, email, password }) => {
   try {
-    await account.create("unique()", email, password, name);
-    alert("Signup successful!");
+    const response = await authService.createAccount({ name, email, password });
+    return response;
   } catch (err) {
-    alert(err.message);
+    throw err;
   }
 };
