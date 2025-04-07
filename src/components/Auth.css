@@ -81,9 +81,19 @@ form h2 {
   border: none;
   cursor: pointer;
 }
-.auth-box button:hover {
+#logintype {
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+  background: linear-gradient(to right, #0d0d0d 0%, #000000 26%, #810000 100%);
+  box-shadow: 2px 2px 10px rgb(54, 54, 54);
+  color: white;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+#logintype:hover {
   background: linear-gradient(to right, #181616 0%, #160101 26%, #ad0000 100%);
-
   box-shadow: 2px 2px 10px rgb(156, 156, 156);
 }
 
@@ -123,4 +133,20 @@ form h2 {
 .Icons img {
   border-radius: 50%;
   width: 20px;
+}
+#signintype {
+  padding: 10px;
+  border-radius: 8px;
+  width: 60%;
+  background: linear-gradient(to right, #0d0d0d 0%, #000000 26%, #810000 100%);
+  box-shadow: 2px 2px 10px rgb(54, 54, 54);
+  color: white;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+#signintype:hover {
+  background: linear-gradient(to right, #181616 0%, #160101 26%, #ad0000 100%);
+  box-shadow: 2px 2px 10px rgb(156, 156, 156);
 }

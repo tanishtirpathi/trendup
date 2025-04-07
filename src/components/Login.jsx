@@ -30,7 +30,9 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Login on trend up</button>
+        <button id="logintype" type="submit">
+          Login on trend up
+        </button>
         <div className="Icons ">
           <img src="" alt="" />
           <img src="" alt="" />

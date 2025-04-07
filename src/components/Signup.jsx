@@ -38,10 +38,11 @@ export default function Signup() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Sign up on trend up</button>
-        <p>
-          Already have an account? <a href="/login">Login on trend up</a>
-        </p>
+        <button id="signintype" type="submit">
+          Sign up on trend up
+        </button>
+        <p>Already have an account?</p>
+        <a href="/login">Login on trend up</a>
       </form>
     </div>
   );
