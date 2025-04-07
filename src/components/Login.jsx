@@ -18,7 +18,7 @@ export default function Login() {
         <h2>Login to the trend up</h2>
         <input
           type="email"
-          placeholder="Email / username"
+          placeholder="Email / username "
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
