@@ -31,12 +31,19 @@ export default function Login() {
           required
         />
         <button type="submit">Login on trend up</button>
+        <div className="Icons ">
+          <img src="" alt="" />
+          <img src="" alt="" />
+          <img src="" alt="" />
+          <img src="" alt="" />
+        </div>
         <p>
           <a href="#">Forgot password?</a>
         </p>
-        <p>
-          Don't have an account? <a href="/signup">Sign up on trend up</a>
-        </p>
+        <p>Don't have an account?</p>
+        <a href="/signup" id="signup">
+          Sign up
+        </a>
       </form>
     </div>
   );
