@@ -8,6 +8,7 @@ export default function Signup() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    window.location.href = "/";
   };
 
   return (
