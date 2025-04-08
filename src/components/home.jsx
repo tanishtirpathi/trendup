@@ -7,7 +7,7 @@ function Home() {
         Sign up
       </a>
       <a href="/Login" id="signup">
-        Sign logi
+        Sign <logi></logi>
       </a>
     </>
   );
