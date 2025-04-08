@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { loginUser } from "../appwrite/loginUser";
 import "./Auth.css";
 
 export default function Login() {
@@ -8,7 +7,11 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    await loginUser(email, password);
+    if ((email === "tanishtirpathi@gmail.com", password === "Rattangarh0011")) {
+      alert("hi welcome tanish sir ");
+    } else {
+      alert("username and password is incorrect ");
+    }
   };
 
   return (

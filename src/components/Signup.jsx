@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { signupUser } from "../appwrite/signupUser";
 import "./Auth.css";
 
 export default function Signup() {
@@ -9,7 +8,6 @@ export default function Signup() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    await signupUser(email, password, username);
   };
 
   return (
