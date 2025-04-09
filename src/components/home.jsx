@@ -1,5 +1,5 @@
 import React from "react";
-function Home() {
+function Wrapper() {
   return (
     <>
       <h1>hi my name is tanish stirapthi</h1>
@@ -13,4 +13,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Wrapper;
