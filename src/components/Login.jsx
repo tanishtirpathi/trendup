@@ -9,7 +9,7 @@ export default function Login() {
     e.preventDefault();
     if ((email === "tanishtirpathi@gmail.com", password === "Rattangarh0011")) {
       alert("hi welcome tanish sir ");
-      window.location.href = "/home";
+      window.location.href = "main";
     } else {
       alert("username and password is incorrect ");
     }
