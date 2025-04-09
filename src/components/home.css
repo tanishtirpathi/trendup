@@ -9,6 +9,7 @@ body {
 .container {
   min-height: 100vh;
   display: flex;
+  width: 100vw;
 }
 
 .sidebar {
@@ -41,13 +42,14 @@ body {
 
 .circle-row {
   display: flex;
+  overflow: scroll;
   gap: 1rem;
   margin-bottom: 1rem;
 }
 
 .circle {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
   background-color: #d1d5db;
   border-radius: 50%;
 }
