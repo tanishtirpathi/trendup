@@ -1,14 +1,60 @@
-.main {
-  background: linear-gradient(
-    200deg,
-    hsl(0, 0%, 5%) 0%,
-    #000000 26%,
-    #000000 41%,
-    #080000 52%,
-    #100000 70%,
-    #080000 88%,
-    #810000 100%
-  );
-  width: 100vw;
-  height: 100vh;
+/* App.css */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: black;
+  color: white;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+}
+
+.sidebar {
+  width: 12rem;
+  background: linear-gradient(to bottom, #18181b, #450a0a);
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+}
+
+.logo-placeholder {
+  background-color: #d1d5db;
+  width: 3.5rem;
+  height: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 0.875rem;
+}
+
+.main-content {
+  flex: 1;
+  background: linear-gradient(to bottom right, #000000, #450a0a);
+  padding: 1rem;
+  position: relative;
+}
+
+.circle-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #d1d5db;
+  border-radius: 50%;
+}
+
+.right-sidebar {
+  width: 12rem;
+  background: linear-gradient(to bottom right, #171717, #000000);
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
 }
