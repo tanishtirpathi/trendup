@@ -150,3 +150,14 @@ form h2 {
   background: linear-gradient(to right, #181616 0%, #160101 26%, #ad0000 100%);
   box-shadow: 2px 2px 10px rgb(156, 156, 156);
 }
+.msg {
+  margin-top: 5px;
+  padding: 8px;
+  background-color: #3a141400;
+  border-radius: 8px;
+  color: #ebebeb;
+  font-weight: bold;
+
+  font-size: 15px;
+  text-align: center;
+}

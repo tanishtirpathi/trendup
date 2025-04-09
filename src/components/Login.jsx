@@ -4,14 +4,17 @@ import "./Auth.css";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    if ((email === "tanishtirpathi@gmail.com", password === "Rattangarh0011")) {
-      alert("hi welcome tanish sir ");
-      window.location.href = "main";
+    if (email === "tanishtirpathi@gmail.com" && password === "Rattangarh0011") {
+      setMessage("👋 Hi, welcome Tanish sir!");
+      setTimeout(() => {
+        window.location.href = "main";
+      }, 1500); // small delay so user sees the message
     } else {
-      alert("username and password is incorrect ");
+      setMessage("❌ Invalid detail. Please try again.");
     }
   };
 
@@ -19,10 +22,10 @@ export default function Login() {
     <div className="auth-container">
       <div className="auth-graphic">images or graphic</div>
       <form onSubmit={handleLogin} className="auth-box">
-        <h2>Login to the trend up</h2>
+        <h2>Login to TrendUp</h2>
         <input
           type="email"
-          placeholder="Email / username "
+          placeholder="Email / username"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -35,14 +38,11 @@ export default function Login() {
           required
         />
         <button id="logintype" type="submit">
-          Login on trend up
+          Login on TrendUp
         </button>
-        <div className="Icons ">
-          <img src="" alt="" />
-          <img src="" alt="" />
-          <img src="" alt="" />
-          <img src="" alt="" />
-        </div>
+
+        {message && <div className="msg">{message}</div>}
+
         <p>
           <a href="#">Forgot password?</a>
         </p>
