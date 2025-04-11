@@ -7,4 +7,9 @@ nav{
     display: flex;
     align-items:center;
     justify-content: start;
+
+}
+.de{
+    display: flex;
+
 }
