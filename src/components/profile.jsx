@@ -33,7 +33,7 @@ function Profile() {
 
   return (
     <div className="min-h-screen w-screen flex text-white bg-red font-san ">
-      <aside className="w-60 bg-gradient-to-b from-black-900 to-red-900 p-4 overflow-hidden ">
+      <aside className="w-60 bg-gradient-to-b from-black-900 to-red-900 p-2 overflow-y-hidden">
         <div className="bg-gray-300 w-14 h-8 mb-6" />
         <nav className="flex flex-col gap-7 text-sm">
           <a
@@ -68,7 +68,7 @@ function Profile() {
           </a>
         </nav>
       </aside>
-      <main className="overflow-hidden flex-1 p-4 bg-gradient-to-br from-black to-red-900 relative">
+      <main className=" flex-1 p-3 bg-gradient-to-br overflow-y-auto from-black to-red-900 relative">
         {loading && <p>Loading...</p>}
         {error && <p className="text-red-500">{error}</p>}
         
@@ -76,7 +76,7 @@ function Profile() {
           <div className="imageside">
             <img
               src={profileData.avatar_url}
-              className="h-40 w-40 rounded-full"
+              className="h-35 w-35 rounded-full"
               alt="Avatar"
             />
             <div className="p-10">
@@ -153,7 +153,7 @@ function Profile() {
         />
       </div>
     </div>
-     </div><img src="./image11.png" className=" ml-30 h-130" alt="" /></div>
+     </div><img src="./image11.png" className=" ml-30 h-125" alt="" /></div>
       </main>
     </div>   
 
