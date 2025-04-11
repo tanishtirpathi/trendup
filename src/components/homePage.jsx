@@ -13,7 +13,7 @@ const App = () => {
           <p>sdfdsds</p>
           <p>adsfasdfad</p>
           <p>sdafdsafads</p>
-          <p>asdfadsfads</p>
+          <p>profile</p>
           <p>fasdfasdfasd</p>
         </nav>
       </aside>
