@@ -1,20 +1,25 @@
 import React from "react";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 const App = () => {
   return (
     <div className="min-h-screen w-screen flex text-white bg-black font-sans">
       {/* Sidebar */}
-      <aside className="w-48 bg-gradient-to-b from-zinc-900 to-red-900 p-4 border border-gray-200">
+      <aside className="w-60 bg-gradient-to-b from-zinc-900 to-red-900 p-4 border border-gray-200">
         <div className="bg-gray-300 w-14 h-8 mb-6" />
         <nav className="flex flex-col gap-4 text-sm">
-          <p>Home</p>
-          <p>compoentst</p>
-          <p>takhsja</p>
-          <p>sdfdsds</p>
-          <p>adsfasdfad</p>
-          <p>sdafdsafads</p>
-          <p>profile</p>
-          <p>fasdfasdfasd</p>
+          <a href="#" className="text-white visited:text-white no-underline"
+          >compoentst</a>
+          <a href="#"className="text-white visited:text-white no-underline">Home</a>
+          <a href="#"className="text-white visited:text-white no-underline">takhsja</a>
+          <a href="#"className="text-white visited:text-white no-underline">sdfdsds</a>
+          <a href="#"className="text-white visited:text-white no-underline">adsfasdfad</a>
+          <a href="#"className="text-white visited:text-white no-underline">sdafdsafads</a>
+          <a href="#"className="text-white visited:text-white no-underline">profile</a>
+          <a href="#"className="text-white visited:text-white no-underline">fasdfasdfasd</a>
         </nav>
       </aside>
 
