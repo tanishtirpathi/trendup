@@ -1,5 +1,6 @@
 # React + Vite
-
+This is the socail media project which is only made using the frontend knowledge and also it is the practice 
+Project for the showcase my skills in react 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

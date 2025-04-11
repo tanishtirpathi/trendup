@@ -1,12 +1,12 @@
 import React from "react";
-import "./home.css";
+
 const App = () => {
   return (
-    <div className="container">
+    <div className="min-h-screen w-screen flex text-white bg-black font-sans">
       {/* Sidebar */}
-      <aside className="sidebar">
-        <div className="logo-placeholder" />
-        <nav className="nav-list">
+      <aside className="w-48 bg-gradient-to-b from-zinc-900 to-red-900 p-4 border border-gray-200">
+        <div className="bg-gray-300 w-14 h-8 mb-6" />
+        <nav className="flex flex-col gap-4 text-sm">
           <p>Home</p>
           <p>compoentst</p>
           <p>takhsja</p>
@@ -19,18 +19,18 @@ const App = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="main-content">
+      <main className="flex-1 p-4 bg-gradient-to-br from-black to-red-900 relative">
         {/* Top Circles */}
-        <div className="circle-row">
+        <div className="flex gap-4 overflow-scroll mb-4">
           {Array.from({ length: 10 }).map((_, i) => (
-            <div key={i} className="circle" />
+            <div key={i} className="w-14 h-14 bg-gray-300 rounded-full" />
           ))}
         </div>
         {/* Content could go here */}
       </main>
 
       {/* Right Sidebar */}
-      <aside className="right-sidebar" />
+      <aside className="w-48 bg-gradient-to-br from-neutral-900 to-black p-4 border border-gray-200" />
     </div>
   );
 };
