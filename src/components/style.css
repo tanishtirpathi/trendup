@@ -1,3 +1,10 @@
 nav{
     margin: 60px 20px;
+
+}
+
+.imageside{
+    display: flex;
+    align-items:center;
+    justify-content: start;
 }
