@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import "./style.css";
 
 function Profile() {
-  // State hooks to manage loading, error, and data
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [profileData, setProfileData] = useState(null); 
+  const [profileData, setProfileData] = useState(null);
   const [bio, setBio] = useState('');
   const [description, setDescription] = useState('');
 
-  // Function to fetch GitHub user data
   const fetchGitHubData = async () => {
     try {
       const url = "https://api.github.com/users/tanishtirpathi";
@@ -26,138 +24,93 @@ function Profile() {
     }
   };
 
-  // useEffect hook to fetch data when the component mounts
   useEffect(() => {
     fetchGitHubData();
-  }, []); // Empty dependency array ensures this runs once on mount
+  }, []);
 
   return (
-    <div className="min-h-screen w-screen flex text-white bg-red font-san ">
-      <aside className="w-60 bg-gradient-to-b from-black-900 to-red-900 p-2 overflow-y-hidden">
-        <div className="bg-gray-300 w-14 h-8 mb-6" />
-        <nav className="flex flex-col gap-7 text-sm">
-          <a
-            href="#"
-            className="text-xl text-white visited:text-white no-underline"
-          >
-            Components
-          </a>
-          <a
-            href="#"
-            className="text-xl text-white visited:text-white no-underline"
-          >
-            Home
-          </a>
-          <a
-            href="#"
-            className="text-xl text-white visited:text-white no-underline"
-          >
-            Tasks
-          </a>
-          <a
-            href="#"
-            className="text-xl text-white visited:text-white no-underline"
-          >
-            Settings
-          </a>
-          <a
-            href="#"
-            className="text-xl text-white visited:text-white no-underline"
-          >
-            Profile
-          </a>
+    <div className="min-h-screen w-screen flex bg-gradient-to-br from-black via-gray-900 to-gray-950 text-white font-sans">
+      <aside className="w-64 p-6 bg-gradient-to-b from-gray-950 to-gray-900 shadow-lg border-r border-gray-700">
+        <div className="mb-10">
+          <div className="bg-white h-10 w-10 rounded-full mb-4 mx-auto"></div>
+          <h1 className="text-center text-lg font-bold text-white">Dashboard</h1>
+        </div>
+        <nav className="flex flex-col gap-6">
+          {["Components", "Home", "Tasks", "Settings", "Profile"].map((item, index) => (
+            <a key={index} href="main" className="text-white hover:text-cyan-400 transition-all text-lg font-medium">
+              {item}
+            </a>
+          ))}
         </nav>
       </aside>
-      <main className=" flex-1 p-3 bg-gradient-to-br overflow-y-auto from-black to-red-900 relative">
-        {loading && <p>Loading...</p>}
-        {error && <p className="text-red-500">{error}</p>}
-        
-          {profileData && (
-          <div className="imageside">
-            <img
-              src={profileData.avatar_url}
-              className="h-35 w-35 rounded-full"
-              alt="Avatar"
-            />
-            <div className="p-10">
-              {" "}
-              <h2> {profileData.name}</h2>
-              <p>{profileData.bio}</p>
+
+      <main className="flex-1 p-6 overflow-y-auto bg-gradient-to-br from-black via-gray-900 to-gray-950">
+        {loading && <p className="text-center text-gray-300">Loading...</p>}
+        {error && <p className="text-red-500 text-center">{error}</p>}
+
+        {profileData && (
+          <div className="flex flex-col md:flex-row items-start gap-10">
+            <div className="bg-white/10 p-6 rounded-2xl shadow-lg backdrop-blur-md w-full max-w-sm">
+              <img src={profileData.avatar_url} alt="Avatar" className="w-32 h-32 rounded-full mx-auto mb-4" />
+              <h2 className="text-center text-2xl font-bold mb-2">{profileData.name}</h2>
+              <p className="text-center text-gray-300 mb-2">{profileData.bio}</p>
+              <div className="flex justify-around text-sm text-gray-400">
+                <span>Followers: {profileData.followers}</span>
+                <span>Following: {profileData.following}</span>
+              </div>
+            </div>
+
+            <div className="flex-1 w-full">
+              <div className="space-y-6">
+                <div className="bg-white/10 p-6 rounded-2xl shadow-md">
+                  <h3 className="text-xl font-semibold text-cyan-400 mb-2">Links</h3>
+                  <a href="#" className="block text-blue-400 hover:underline">tanishtirpathi.netlify.app</a>
+                  <a href="#" className="block text-blue-400 hover:underline">tanishtirpathi.netlify.app</a>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="bg-white/10 p-4 rounded-xl">
+                    <label htmlFor="bio" className="block text-sm text-cyan-300 mb-1">Bio</label>
+                    <textarea
+                      id="bio"
+                      className="w-full p-3 rounded-lg bg-gray-800 border border-cyan-500 text-white focus:ring-2 focus:ring-cyan-500"
+                      value={bio}
+                      onChange={(e) => setBio(e.target.value)}
+                      rows={2}
+                      placeholder="Write your bio here"
+                    />
+                  </div>
+
+                  <div className="bg-white/10 p-4 rounded-xl">
+                    <label htmlFor="description" className="block text-sm text-cyan-300 mb-1">Description</label>
+                    <textarea
+                      id="description"
+                      className="w-full p-3 rounded-lg bg-gray-800 border border-cyan-500 text-white focus:ring-2 focus:ring-cyan-500"
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                      rows={4}
+                      placeholder="Describe yourself here"
+                    />
+                  </div>
+
+                  <div className="md:col-span-2 bg-white/10 p-4 rounded-xl">
+                    <label htmlFor="posts" className="block text-sm text-cyan-300 mb-1">Posts</label>
+                    <textarea
+                      id="posts"
+                      className="w-full p-3 rounded-lg bg-gray-800 border border-cyan-500 text-white focus:ring-2 focus:ring-cyan-500"
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                      rows={3}
+                      placeholder="Your posted posts"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         )}
-    <div className="flex">  
-       <div className="w-full"> 
-        <div className="flex items-start justify-center flex-col p-4">
-          <h2>Links</h2>
-          <a href="#" className="text-blue visited:text-white no-underline">
-            tanishtirpathi.netlify.app
-          </a>
-          <a href="#" className="text-blue visited:text-white no-underline">
-            tanishtirpathi.netlify.app
-          </a>
-
-        </div>
-        {profileData && (  <div className="flex ">
-          <h3 className="pl-3 text-xl">follower: {profileData.followers}</h3>
-          <h3 className="pl-10 text-xl" >following: {profileData.following}</h3>
-        </div>)}
-        <div className="flex flex-col p-2 max-w-md ">
-      
-      <div className="relative  m-3">
-        <label 
-          className="absolute -top-2 left-2 px-1 text-xs font-medium bg-black text-blue-500" 
-          htmlFor="bio"
-        >
-          bio
-        </label>
-        <textarea
-          id="bio"
-          className="w-full p-3 border-2 border-blue-500 rounded focus:outline-none focus:ring-1 focus:ring-white-500"
-          value={bio}
-          placeholder="write your bio here"
-          onChange={(e) => setBio(e.target.value)}
-          rows={2}
-        />
-      </div>
-
-      {/* Dark Border Text Box */}
-      <div className="relative  m-3">
-        <label 
-          className="absolute -top-2 left-2 px-1 text-xs font-medium bg-black text-blue-500 " 
-          htmlFor="description"
-        >
-          description
-        </label>
-        <textarea
-          id="description" placeholder="discrbe yourself  here"
-          className="w-full p-3 border-2 border-blue-500 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          rows={4}
-        />
-      </div>
-      <div className="relative w-full m-3">
-        <label 
-          className="absolute -top-2 left-2 px-1 text-xs font-medium bg-black text-blue-500 " 
-          htmlFor="description"
-        >
-          Posts
-        </label>
-        <textarea
-          id="description" placeholder="your posted posts"
-          className="w-full p-3 border-2 border-blue-500 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          rows={2}
-        />
-      </div>
-    </div>
-     </div><img src="./image11.png" className=" ml-30 h-125" alt="" /></div>
       </main>
-    </div>   
-
-        
+    </div>
   );
 }
 
