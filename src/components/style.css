@@ -7,9 +7,8 @@ nav{
     display: flex;
     align-items:center;
     justify-content: start;
-
 }
-.de{
-    display: flex;
+button{
+    box-shadow:2px 2px 12px rgb(192, 192, 192);
 
 }

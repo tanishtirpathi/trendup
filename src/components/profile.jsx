@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
 
 function Profile() {
@@ -7,6 +8,7 @@ function Profile() {
   const [profileData, setProfileData] = useState(null);
   const [bio, setBio] = useState('');
   const [description, setDescription] = useState('');
+  const navigate = useNavigate();
 
   const fetchGitHubData = async () => {
     try {
@@ -109,7 +111,13 @@ function Profile() {
             </div>
           </div>
         )}
-      </main>
+<button  
+  onClick={() => navigate("/")} 
+  className="pl-7 pr-7 pt-2 pb-2 bg-gradient-to-br from-black via-gray-900 to-gray-950 text-white fixed right-10 bottom-10"
+>
+  Log out
+</button>
+                       </main>
     </div>
   );
 }

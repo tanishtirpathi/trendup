@@ -9,7 +9,7 @@ const App = () => {
       <aside className="w-64 bg-gradient-to-b from-black via-red-900 to-black p-6 border-r border-red-800 shadow-xl">
         <div className="mb-10 flex items-center gap-3">
           <div className="bg-white w-10 h-10 rounded-full" />
-          <span className="text-xl font-bold tracking-wide">StarkFeed</span>
+          <span className="text-xl font-bold tracking-wide">Trend up</span>
         </div>
         <nav className="flex flex-col gap-6 text-base">
           {[
@@ -21,7 +21,7 @@ const App = () => {
           ].map((item, index) => (
             <a
               key={index}
-              href="#"
+              href="profile"
               className="flex items-center gap-3 text-white no-underline hover:text-red-400 transition-all duration-200"
             >
               {item.icon}
