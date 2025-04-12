@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import { Home, Layers, Settings, User, BarChart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const App = () => {
+  const [profileData, setProfileData] = useState(null);
   const Navigate = useNavigate();
+  const fetchGitHubData = async () => {
+    const url = "https://api.github.com/users/tanishtirpathi";
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("User not found");
+    }
+    const data = await response.json();
+    setProfileData(data);
+  };
+
+  useEffect(() => {
+    fetchGitHubData();
+  }, []);
 
   return (
     <div className="flex h-screen w-screen font-sans text-white overflow-hidden">
@@ -40,17 +54,17 @@ const App = () => {
         <ul className="space-y-4 text-sm">
           <li>
             <a href="#" className="hover:text-white-400 flex items-center gap-2">
-              setting
+              Setting
             </a>
           </li>
           <li>
             <a href="#" className="hover:text-white-400 flex items-center gap-2">
-              about
+              About
             </a>
           </li>
           <li>
             <a href="#" className="hover:text-white-400 flex items-center gap-2">
-              other
+              Other
             </a>
           </li>
         </ul>
@@ -71,9 +85,32 @@ const App = () => {
             <div key={i} className="w-14 h-14 bg-red-300 rounded-full" />
           ))}
         </div>
-        <div className="flex-col space-y-6">
+
+        <div className="flex flex-col space-y-6">
           {Array.from({ length: 12 }).map((_, i) => (
-            <div key={i} className="w-full h-100 bg-red-300 p-10 rounded-md" />
+            <div
+              key={i}
+              className="w-full p-6 rounded-md bg-gray-950 bg-opacity-30 border border-white-900"
+            >
+              <div className="flex items-center gap-4 mb-2">
+                {profileData && (
+                  <img
+                    src={profileData.avatar_url}
+                    className="h-10 w-10 rounded-full"
+                    alt="GitHub Avatar"
+                  />
+                )}
+                <h2 className="text-lg font-semibold">Tweet #{i + 1}</h2>
+              </div>
+              <p className="text-sm text-zinc-300">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa officia maxime illum.
+              </p>
+              <img
+                    src="./imag2.png"
+                    className="h-100 w-full m-5 rounded-md object-cover"
+                    alt="GitHub Avatar"
+                  />
+            </div>
           ))}
         </div>
       </main>
