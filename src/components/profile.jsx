@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import "./style.css";
 
 function Profile() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [profileData, setProfileData] = useState(null);
-  const [bio, setBio] = useState('');
+  const [bio, setBio] = useState('A passionate coder from india 💯 coder work hard never stop');
   const [description, setDescription] = useState('');
+  const [Post, setPost] = useState('18');
+
   const navigate = useNavigate();
 
   const fetchGitHubData = async () => {
@@ -100,8 +103,8 @@ function Profile() {
                     <textarea
                       id="posts"
                       className="w-full p-3 rounded-lg bg-gray-800 border border-cyan-500 text-white focus:ring-2 focus:ring-cyan-500"
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
+                      value={Post}
+                      onChange={(e) => setPost(e.target.value)}
                       rows={3}
                       placeholder="Your posted posts"
                     />
