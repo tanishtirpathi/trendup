@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./style.css";
 import { Home, Layers, Settings, User, BarChart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import RandomImage from "../pages/RandomImages";
 
 const App = () => {
   const [profileData, setProfileData] = useState(null);
@@ -105,11 +106,8 @@ const App = () => {
               <p className="text-sm text-zinc-300">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa officia maxime illum.
               </p>
-              <img
-                    src="./imag2.png"
-                    className="h-100 w-full m-5 rounded-md object-cover"
-                    alt="GitHub Avatar"
-                  />
+              <RandomImage />
+
             </div>
           ))}
         </div>

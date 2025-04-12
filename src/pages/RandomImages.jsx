@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const RandomImage = () => {
   const [imageUrl, setImageUrl] = useState('');
-  const accessKey = '0LAwzTKj3q-net_pL6SfJiAhIPxcEzUT-egpYZey8ZI'; // Replace with your key
+  const accessKey = '0LAwzTKj3q-net_pL6SfJiAhIPxcEzUT-egpYZey8ZI'; 
 
   const fetchRandomImage = async () => {
     try {
@@ -22,9 +22,8 @@ const RandomImage = () => {
 
   return (
     <div className="p-4 text-center">
-      <h1 className="text-xl font-bold mb-4">Random Unsplash Image</h1>
       {imageUrl ? (
-        <img src={imageUrl} alt="Random from Unsplash" className="rounded shadow-md mx-auto max-w-md" />
+        <img src={imageUrl} alt="Random from Unsplash"   className="h-100 w-full m-5 rounded-md object-cover"/>
       ) : (
         <p>Loading...</p>
       )}
