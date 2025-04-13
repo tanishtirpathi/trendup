@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Home, Layers, Settings, User, BarChart } from "lucide-react";
 import RandomImage from '../../pages/RandomImages';
+import "./explore.css"
 function Explore() {
     const [Count , setCount] = useState(12)
 
@@ -16,10 +17,13 @@ function Explore() {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
       }, []);
+
+
+      
   return (
     <>
     <div className="flex h-screen w-screen font-sans text-white overflow-hidden">
-    <aside className="w-64 h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-r border-blue-900 shadow-xl fixed top-0 left-0">
+    <aside  className=" h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-r border-blue-900 shadow-xl ">
         <div className="mb-10 flex items-center gap-3">
           <div className="bg-white w-10 h-10 rounded-full" />
           <span className="text-xl font-bold tracking-wide">Dashboard</span>
@@ -43,7 +47,7 @@ function Explore() {
           ))}
         </nav>
       </aside>
-<main className=' w-screen h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 overflow-scroll'>
+<main className=' h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 overflow-scroll'>
 <div className="grid grid-cols-3 md:grid-cols-4 overflow-scroll ">
 {Array.from({length:Count}).map((_, i)=>{
    return <RandomImage key={i} />
