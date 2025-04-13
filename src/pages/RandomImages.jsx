@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import "./css.css"
 const RandomImage = () => {
   const [imageUrl, setImageUrl] = useState('');
   // const accessKey = '0LAwzTKj3q-net_pL6SfJiAhIPxcEzUT-egpYZey8ZI'; 

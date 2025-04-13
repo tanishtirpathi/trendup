@@ -1,6 +1,6 @@
 aside{
     width: 20%;
 }
-main{
-    width: 80%;
+image:hover{
+    box-shadow: 2px 2px 10px red;
 }
