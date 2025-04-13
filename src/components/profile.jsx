@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Home, Layers, Settings, User, BarChart } from "lucide-react";
 
 import "./style.css";
 
@@ -35,20 +36,38 @@ function Profile() {
 
   return (
     <div className="min-h-screen w-screen flex bg-gradient-to-br from-black via-gray-900 to-gray-950 text-white font-sans">
-      <aside className="w-64 p-6 bg-gradient-to-b from-gray-950 to-gray-900 shadow-lg border-r border-gray-700">
-        <div className="mb-10">
-          <div className="bg-white h-10 w-10 rounded-full mb-4 mx-auto"></div>
-          <h1 className="text-center text-lg font-bold text-white">Dashboard</h1>
+      <aside className="h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-r border-blue-900 shadow-xl">
+        <div className="mb-10 flex items-center gap-3">
+          <div className="bg-white w-10 h-10 rounded-full" />
+          <span className="text-xl font-bold tracking-wide">Dashboard</span>
         </div>
-        <nav className="flex flex-col gap-6">
-          {["Components", "Home", "Tasks", "Settings", "Profile"].map((item, index) => (
-            <a key={index} href="main" className="text-white hover:text-cyan-400 transition-all text-lg font-medium">
-              {item}
+        <nav className="flex flex-col gap-6 text-base">
+          {[
+            { icon: <Home size={18} />, label: "Home", path: "/home" },
+            {
+              icon: <Layers size={18} />,
+              label: "Explore",
+              path: "/explore",
+            },
+            { icon: <BarChart size={18} />, label: "notification", path: "/notification" },
+            { icon: <User size={18} />, label: "Profile", path: "/profile" },
+            {
+              icon: <Settings size={18} />,
+              label: "Settings",
+              path: "/settings",
+            },
+          ].map((item, index) => (
+            <a
+              key={index}
+              href={item.path}
+              className="flex items-center gap-3 text-white no-underline hover:text-blue-400 transition-all duration-200"
+            >
+              {item.icon}
+              {item.label}
             </a>
           ))}
         </nav>
       </aside>
-
       <main className="flex-1 p-6 overflow-y-auto bg-gradient-to-br from-black via-gray-900 to-gray-950">
         {loading && <p className="text-center text-gray-300">Loading...</p>}
         {error && <p className="text-red-500 text-center">{error}</p>}

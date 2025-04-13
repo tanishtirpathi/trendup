@@ -24,30 +24,38 @@ const App = () => {
   return (
     <div className="flex h-screen w-screen font-sans text-white overflow-hidden">
       {/* Left Sidebar */}
-      <aside className="w-64 h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-r border-blue-900 shadow-xl fixed top-0 left-0">
-        <div className="mb-10 flex items-center gap-3">
-          <div className="bg-white w-10 h-10 rounded-full" />
-          <span className="text-xl font-bold tracking-wide">Dashboard</span>
-        </div>
-        <nav className="flex flex-col gap-6 text-base">
-          {[
-            { icon: <Home size={18} />, label: "Home" },
-            { icon: <Layers size={18} />, label: "Components" },
-            { icon: <BarChart size={18} />, label: "Tasks" },
-            { icon: <User size={18} />, label: "Profile" },
-            { icon: <Settings size={18} />, label: "Settings" },
-          ].map((item, index) => (
-            <a
-              key={index}
-              href="#"
-              className="flex items-center gap-3 text-white no-underline hover:text-blue-400 transition-all duration-200"
-            >
-              {item.icon}
-              {item.label}
-            </a>
-          ))}
-        </nav>
-      </aside>
+           <aside className="fixed h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-r border-blue-900 shadow-xl">
+             <div className="mb-10 flex items-center gap-3">
+               <div className="bg-white w-10 h-10 rounded-full" />
+               <span className="text-xl font-bold tracking-wide">Dashboard</span>
+             </div>
+             <nav className="flex flex-col gap-6 text-base">
+               {[
+                 { icon: <Home size={18} />, label: "Home", path: "/home" },
+                 {
+                   icon: <Layers size={18} />,
+                   label: "Explore",
+                   path: "/explore",
+                 },
+                 { icon: <BarChart size={18} />, label: "notification", path: "/notification" },
+                 { icon: <User size={18} />, label: "Profile", path: "/profile" },
+                 {
+                   icon: <Settings size={18} />,
+                   label: "Settings",
+                   path: "/settings",
+                 },
+               ].map((item, index) => (
+                 <a
+                   key={index}
+                   href={item.path}
+                   className="flex items-center gap-3 text-white no-underline hover:text-blue-400 transition-all duration-200"
+                 >
+                   {item.icon}
+                   {item.label}
+                 </a>
+               ))}
+             </nav>
+           </aside>
 
       {/* Right Sidebar */}
       <aside className="w-56 h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-l border-blue-900 shadow-inner fixed top-0 right-0">

@@ -1,35 +1,46 @@
-import React, { useEffect, useState } from 'react';
-import "./css.css"
-const RandomImage = () => {
-  const [imageUrl, setImageUrl] = useState('');
-  // const accessKey = '0LAwzTKj3q-net_pL6SfJiAhIPxcEzUT-egpYZey8ZI'; 
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 
-  const fetchRandomImage = () => {
-  const randomId = Math.floor(Math.random()*1000)
-    const url = `https://picsum.photos/id/${randomId}/200/300`
-    const img = new Image();
-    img.onload = () => setImageUrl(url);
-    img.onerror = () => {
-      // fallback to random
-      setImageUrl(`https://picsum.photos/300/200?random=${Math.floor(Math.random() * 10000)}`);
-    };
-    img.src = url;
+function ExploreImages() {
+  const [images, setImages] = useState([]);
 
+  const API_KEY = "l4TW7s3pFyIwQpqJ5TisMrwthQloY6e3ZSVRYHUBqtvCgG6DafKUuMee";
+
+  const client = axios.create({
+    baseURL: "https://api.pexels.com/v1/",
+    headers: {
+      Authorization: API_KEY,
+    },
+  });
+
+  const fetchRandomPhotos = async (count = 20) => {
+    try {
+      const res = await client.get(`/curated?per_page=${count}`);
+      return res.data.photos;
+    } catch (err) {
+      console.error("Failed to fetch images", err);
+      return [];
+    }
   };
 
   useEffect(() => {
-    fetchRandomImage();
+    fetchRandomPhotos(14).then((data) => {
+      setImages(data);
+    });
   }, []);
 
   return (
-    <div className="p-4 text-center">
-      {imageUrl ? (
-        <img src={imageUrl} alt="Random from Unsplash" className="h-100 w-full m-5 rounded-md object-cover" />
-      ) : (
-        <p>Loading...</p>
-      )}
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 p-4">
+      {images.map((photo) => (
+        <img
+          key={photo.id}
+          src={photo.src.medium}
+          alt={photo.alt || "pexels image"}
+          className="rounded-md shadow-md"
+        />
+      ))}
     </div>
   );
-};
+}
 
-export default RandomImage;
+export default ExploreImages;

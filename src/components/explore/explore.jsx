@@ -1,10 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { Home, Layers, Settings, User, BarChart } from "lucide-react";
-import RandomImage from "../../pages/RandomImages";
+import Masonry from "react-masonry-css";
+import axios from "axios";
 import "./explore.css";
+
 function Explore() {
-  const [Count, setCount] = useState(12);
-  // const [seletedImage , setselectedImage] = useState(null);
+  const [images, setImages] = useState([]);
+  const [zoomedImageId, setZoomedImageId] = useState(null);
+
+  const [count, setCount] = useState(125);
+
+  const API_KEY = "l4TW7s3pFyIwQpqJ5TisMrwthQloY6e3ZSVRYHUBqtvCgG6DafKUuMee";
+
+  const client = axios.create({
+    baseURL: "https://api.pexels.com/v1/",
+    headers: {
+      Authorization: API_KEY,
+    },
+  });
+
+  const fetchImages = async (num) => {
+    try {
+      const res = await client.get(`/curated?per_page=${num}`);
+      setImages((prev) => [...prev, ...res.data.photos]);
+    } catch (err) {
+      console.error("Error fetching images", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchImages(count);
+  }, [count]);
 
   useEffect(() => {
     const container = document.getElementById("scrollable-main");
@@ -22,49 +48,74 @@ function Explore() {
     return () => container.removeEventListener("scroll", handleScroll);
   }, []);
 
-function handleclick(){
-alert('hi guys')
-}
-
   return (
-    <>
-      <div className="flex h-screen w-screen font-sans text-white overflow-hidden">
-        <aside className=" h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-r border-blue-900 shadow-xl ">
-          <div className="mb-10 flex items-center gap-3">
-            <div className="bg-white w-10 h-10 rounded-full" />
-            <span className="text-xl font-bold tracking-wide">Dashboard</span>
-          </div>
-          <nav className="flex flex-col gap-6 text-base">
-            {[
-              { icon: <Home size={18} />, label: "Home" },
-              { icon: <Layers size={18} />, label: "Components" },
-              { icon: <BarChart size={18} />, label: "Tasks" },
-              { icon: <User size={18} />, label: "Profile" },
-              { icon: <Settings size={18} />, label: "Settings" },
-            ].map((item, index) => (
-              <a
-                key={index}
-                href="#"
-                className="flex items-center gap-3 text-white no-underline hover:text-blue-400 transition-all duration-200"
-              >
-                {item.icon}
-                {item.label}
-              </a>
-            ))}
-          </nav>
-        </aside>
-        <main
-          id="scrollable-main"
-          className=" h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 overflow-scroll"
+    <div className="flex h-screen w-screen font-sans text-white overflow-hidden">
+      {/* Sidebar */}
+      <aside className="h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-r border-blue-900 shadow-xl">
+        <div className="mb-10 flex items-center gap-3">
+          <div className="bg-white w-10 h-10 rounded-full" />
+          <span className="text-xl font-bold tracking-wide">Dashboard</span>
+        </div>
+        <nav className="flex flex-col gap-6 text-base">
+          {[
+            { icon: <Home size={18} />, label: "Home", path: "/" },
+            {
+              icon: <Layers size={18} />,
+              label: "Explore",
+              path: "/explore",
+            },
+            { icon: <BarChart size={18} />, label: "notification", path: "/notification" },
+            { icon: <User size={18} />, label: "Profile", path: "/profile" },
+            {
+              icon: <Settings size={18} />,
+              label: "Settings",
+              path: "/settings",
+            },
+          ].map((item, index) => (
+            <a
+              key={index}
+              href={item.path}
+              className="flex items-center gap-3 text-white no-underline hover:text-blue-400 transition-all duration-200"
+            >
+              {item.icon}
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+
+      <main
+        id="scrollable-main"
+        className="w-full h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 overflow-scroll"
+      >
+        <Masonry
+          breakpointCols={{ default: 5, 1100: 2, 700: 3, 500: 4, 300: 1 }}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column"
         >
-          <div className="grid grid-cols-3 md:grid-cols-3 overflow-scroll ">
-            {Array.from({ length: Count }).map((_, i) => {
-              return <RandomImage key={i} onclick={handleclick}/>;
-            })}
-          </div>
-        </main>
-      </div>
-    </>
+          {images.map((img) => (
+            <img
+              key={img.id}
+              src={img.src.large}
+              alt={img.alt || "pexels image"}
+              className={`rounded-lg shadow-md mb-4 cursor-pointer transition-all duration-300 ease-in-out ${
+                zoomedImageId === img.id
+                  ? "fixed top-0 left-0 w-screen h-screen object-contain bg- z-50 p-10  "
+                  : "hover:scale-130"
+              }`}
+              onClick={() =>
+                setZoomedImageId(zoomedImageId === img.id ? null : img.id)
+              }
+            />
+          ))}
+        </Masonry>{" "}
+        {zoomedImageId && (
+          <div className="fixed inset-0 bg-white/4 backdrop-blur-sm z-40" />
+        )}
+      </main>
+    </div>
   );
 }
 
