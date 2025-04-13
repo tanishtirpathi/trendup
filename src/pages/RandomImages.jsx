@@ -9,8 +9,12 @@ const RandomImage = () => {
       const response = await fetch(
         `https://api.unsplash.com/photos/random?client_id=${accessKey}`
       );
-      const data = await response.json();
-      setImageUrl(data.urls.regular);
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(text);
+      }
+    const data = await response.json();
+    setImageUrl(data.urls.regular);
     } catch (error) {
       console.error("Failed to fetch image:", error);
     }
