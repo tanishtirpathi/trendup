@@ -5,8 +5,15 @@ const RandomImage = () => {
   // const accessKey = '0LAwzTKj3q-net_pL6SfJiAhIPxcEzUT-egpYZey8ZI'; 
 
   const fetchRandomImage = () => {
-    const url = `https://picsum.photos/id/237/200/300`
-    setImageUrl(url);
+  const randomId = Math.floor(Math.random()*1000)
+    const url = `https://picsum.photos/id/${randomId}/200/300`
+    const img = new Image();
+    img.onload = () => setImageUrl(url);
+    img.onerror = () => {
+      // fallback to random
+      setImageUrl(`https://picsum.photos/300/200?random=${Math.floor(Math.random() * 10000)}`);
+    };
+    img.src = url;
 
   };
 
