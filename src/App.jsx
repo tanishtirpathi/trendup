@@ -4,7 +4,8 @@ import Signup from "./components/Signup";
 import Wrapper from "./components/wrapper";
 import Profile from "./components/profile";
 import HomePage from "./components/homePage";
-import InstagramExplorePage from "./components/explore/explore";
+import Explore from "./components/explore/explore";
+
 function App() {
   return (
     <Router>
@@ -14,7 +15,7 @@ function App() {
         <Route path="/" element={<Wrapper />} />
         <Route path="/main" element={<HomePage />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/explore" element={<InstagramExplorePage />} />
+        <Route path="/explore" element={<Explore />} />
       </Routes>
     </Router>
   );
