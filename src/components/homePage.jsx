@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-import { Home, Layers, Settings, User, BarChart } from "lucide-react";
+import { Home, Layers, Crown, User, BarChart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import RandomImage from "../pages/RandomImages";
+"use client";
+import confetti from "canvas-confetti";
+import { Button } from "@/components/ui/button";
 
 const App = () => {
   const [profileData, setProfileData] = useState(null);
@@ -17,6 +20,41 @@ const App = () => {
     setProfileData(data);
   };
 
+  const handleClick = () => {
+    const end = Date.now() + 3 * 1000; // 3 seconds
+    const colors = ["#a786ff", "#fd8bbc", "#eca184", "#f8deb1"];
+ 
+    const frame = () => {
+      if (Date.now() > end) return;
+ 
+      confetti({
+        particleCount: 2,
+        angle: 60,
+        spread: 55,
+        startVelocity: 60,
+        origin: { x: 0, y: 0.5 },
+        colors: colors,
+      });
+      confetti({
+        particleCount: 2,
+        angle: 120,
+        spread: 55,
+        startVelocity: 60,
+        origin: { x: 1, y: 0.5 },
+        colors: colors,
+      });
+ 
+      requestAnimationFrame(frame);
+    };
+ 
+    frame();
+
+
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 1500); 
+
+  };
   useEffect(() => {
     fetchGitHubData();
   }, []);
@@ -26,7 +64,7 @@ const App = () => {
       {/* Left Sidebar */}
            <aside className="fixed h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-r border-blue-900 shadow-xl">
              <div className="mb-10 flex items-center gap-3">
-               <div className="bg-white w-10 h-10 rounded-full" />
+               <img src="./logo-tr.png" className=" w-14 h-14 " />
                <span className="text-xl font-bold tracking-wide">Dashboard</span>
              </div>
              <nav className="flex flex-col gap-6 text-base">
@@ -40,9 +78,9 @@ const App = () => {
                  { icon: <BarChart size={18} />, label: "notification", path: "/notification" },
                  { icon: <User size={18} />, label: "Profile", path: "/profile" },
                  {
-                   icon: <Settings size={18} />,
-                   label: "Settings",
-                   path: "/settings",
+                   icon: <Crown size={18} />,
+                   label: "about",
+                   path: "/about  ",
                  },
                ].map((item, index) => (
                  <a
@@ -62,29 +100,28 @@ const App = () => {
         <h2 className="text-lg font-bold mb-4 text-white-400">Links</h2>
         <ul className="space-y-4 text-sm">
           <li>
-            <a href="#" className="hover:text-white-400 flex items-center gap-2">
+            <a href="#" className="text-white hover:text-gray-400 flex items-center gap-2">
               Setting
             </a>
           </li>
           <li>
-            <a href="#" className="hover:text-white-400 flex items-center gap-2">
+            <a href="#" className="text-white hover:text-gray-400 flex items-center gap-2">
               About
+
             </a>
           </li>
           <li>
-            <a href="#" className="hover:text-white-400 flex items-center gap-2">
+            <a href="#" className="text-white hover:text-gray-400 flex items-center gap-2">
               Other
+
             </a>
           </li>
         </ul>
 
         <h2 className="text-lg font-bold mt-8 mb-4 text-blue-400">Log Out</h2>
-        <button
-          onClick={() => Navigate("/")}
-          className="px-4 py-2 bg-black hover:bg-blue-900 rounded-md text-white transition-colors border border-blue-800"
-        >
-          Log out
-        </button>
+      <div className="relative">
+           <Button className="bg-black px-10  "onClick={handleClick}>log out</Button>
+         </div>
       </aside>
 
       {/* Main Content */}
