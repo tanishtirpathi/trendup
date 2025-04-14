@@ -1,11 +1,13 @@
 import React from "react";
 import TextPressure from "./animation/TextPressure";
 import CountUp from "./animation/counup";
+import { Button } from "@/components/ui/button";
+import { CoolMode } from "./magicui/cool-mode";
 import { InteractiveHoverButton } from "./magicui/interactive-hover-button";
 import "./wrapper.css";
 function Wrapper() {
   return (
-    <div className="bg-black w-screen h-screen">
+    <div className="bg-black w-screen h-screen ">
       <div
         style={{ position: "relative", height: "300px", margin: "0px 400px" }}
       >
@@ -31,6 +33,16 @@ function Wrapper() {
           Discover what's buzzing, follow real-time hype, and express yourself
           in a place built entirely with sleek, responsive frontend magic.
         </h1>
+      </div>
+      <div id="user">
+      <div className="fixed top-10 right-10">
+      <CoolMode>
+        <Button>Click Me!</Button>
+      </CoolMode>
+    </div>
+
+    <div>
+    </div>
       </div>
       <div
         id="button"
