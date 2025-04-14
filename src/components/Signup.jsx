@@ -10,7 +10,7 @@ export default function Signup() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    window.location.href = "/";
+    window.location.href = "/main";
   };
   const handleLogin = () => {
     window.location.href = "/login";
@@ -36,8 +36,8 @@ export default function Signup() {
         `}
       </style>
 
-      <div className="w-[300px] h-[300px] bg-gray-400 flex items-center justify-center font-bold overflow-hidden">
-        images or graphic
+      <div className="w-[400px] h-[400px] bg-gray-400 flex items-center justify-center font-bold overflow-hidden">
+        <img src="./logo.png" alt="" />
       </div>
       
       <form onSubmit={handleSignup} className="flex flex-col justify-center items-center p-5 gap-4 w-[300px]">
@@ -75,7 +75,16 @@ export default function Signup() {
                  type="submit"
                  className="px-14 py-1 bg-transparent"
                >
-                 Sign up 
+                 Sign up  <BorderBeam
+                         size={500}
+                         initialOffset={20}
+                         className="from-transparent via-blue-500 to-transparent"
+                         transition={{
+                           type: "spring",
+                           stiffness: 80,
+                           damping: 50,
+                         }}
+                       />
                </ShimmerButton>
           <BorderBeam
             size={500}

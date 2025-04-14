@@ -25,18 +25,9 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-around items-center h-screen w-screen bg-gradient-to-br from-neutral-900 via-black to-blue-950 text-white gap-8 p-4">
-      <div className="w-72 h-72 bg-gray-400 flex items-center justify-center font-bold">    <BorderBeam
-        size={500}
-        initialOffset={20}
-        className="from-transparent via-blue-500 to-transparent"
-        transition={{
-          type: "spring",
-          stiffness: 80,
-          damping: 50,
-        }}
-      />
-        images or graphic
+    <div className=" fixed top-0 flex justify-around items-center h-screen w-screen bg-gradient-to-br from-neutral-900 via-black to-blue-950 text-white gap-8 p-4">
+      <div className="w-100 h-100 bg-gray-400 flex items-center justify-center font-bold">   
+       <img src="./logo.png" alt="" />
       </div>
      
       <form onSubmit={handleLogin} className="flex flex-col justify-center items-center p-5 gap-4 w-72">
@@ -87,7 +78,16 @@ export default function Login() {
           <p className="text-white">Sign up</p>
         </ShinyButton>
       </form>
-     
+      <BorderBeam
+        size={500}
+        initialOffset={20}
+        className="from-transparent via-blue-500 to-transparent"
+        transition={{
+          type: "spring",
+          stiffness: 80,
+          damping: 50,
+        }}
+      />
    
     </div>
   );
