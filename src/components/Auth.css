@@ -13,9 +13,9 @@
     #000000 26%,
     #000000 41%,
     #080000 52%,
-    #100000 70%,
+    #000610 70%,
     #080000 88%,
-    #810000 100%
+    #002d81 100%
   );
   color: white;
   gap: 2rem;
@@ -74,7 +74,7 @@ form h2 {
   padding: 10px;
   border-radius: 8px;
   width: 100%;
-  background: linear-gradient(to right, #0d0d0d 0%, #000000 26%, #810000 100%);
+  background: linear-gradient(to right, #0d0d0d 0%, #000000 26%, #005c81 100%);
   box-shadow: 2px 2px 10px rgb(54, 54, 54);
   color: white;
   transition: all 0.3s ease;
@@ -85,7 +85,7 @@ form h2 {
   padding: 10px;
   border-radius: 8px;
   width: 100%;
-  background: linear-gradient(to right, #0d0d0d 0%, #000000 26%, #810000 100%);
+  background: linear-gradient(to right, #0d0d0d 0%, #000000 26%, #005281 100%);
   box-shadow: 2px 2px 10px rgb(54, 54, 54);
   color: white;
   transition: all 0.3s ease;
@@ -93,7 +93,7 @@ form h2 {
   cursor: pointer;
 }
 #logintype:hover {
-  background: linear-gradient(to right, #181616 0%, #160101 26%, #ad0000 100%);
+  background: linear-gradient(to right, #181616 0%, #010416 26%, #0059ad 100%);
   box-shadow: 2px 2px 10px rgb(156, 156, 156);
 }
 
@@ -138,7 +138,7 @@ form h2 {
   padding: 10px;
   border-radius: 8px;
   width: 60%;
-  background: linear-gradient(to right, #0d0d0d 0%, #000000 26%, #810000 100%);
+  background: linear-gradient(to right, #0d0d0d 0%, #000000 26%, #007881 100%);
   box-shadow: 2px 2px 10px rgb(54, 54, 54);
   color: white;
   transition: all 0.3s ease;
@@ -147,7 +147,7 @@ form h2 {
 }
 
 #signintype:hover {
-  background: linear-gradient(to right, #181616 0%, #160101 26%, #ad0000 100%);
+  background: linear-gradient(to right, #181616 0%, #160101 26%, #0093ad 100%);
   box-shadow: 2px 2px 10px rgb(156, 156, 156);
 }
 .msg {

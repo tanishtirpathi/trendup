@@ -31,7 +31,7 @@ const App = () => {
              </div>
              <nav className="flex flex-col gap-6 text-base">
                {[
-                 { icon: <Home size={18} />, label: "Home", path: "/home" },
+                 { icon: <Home size={18} />, label: "Home", path: "/main" },
                  {
                    icon: <Layers size={18} />,
                    label: "Explore",
