@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Auth.css";
-
+import { BorderBeam } from "./magicui/border-beam";
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -39,6 +39,16 @@ export default function Signup() {
         />
         <button id="signintype" type="submit">
           Sign up on trend up
+                  <BorderBeam
+                  size={500}
+                  initialOffset={20}
+                  className="from-transparent via-blue-500 to-transparent"
+                  transition={{
+                    type: "spring",
+                    stiffness: 80,
+                    damping: 50,
+                  }}
+                />
         </button>
         <p>Already have an account?</p>
         <a href="/login">Login on trend up</a>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./Auth.css";
 import { BorderBeam } from "./magicui/border-beam";
+import { ShimmerButton } from "./magicui/shimmer-button";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -20,16 +20,20 @@ export default function Login() {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-graphic">images or graphic</div>
-      <form onSubmit={handleLogin} className="auth-box">
-      <h2>Login to TrendUp</h2>
+    <div className="flex justify-around items-center h-screen w-screen overflow-scroll bg-gradient-to-br from-neutral-900 via-black to-blue-950 text-white gap-8 p-4">
+      <div className="w-72 h-72 bg-gray-400 overflow-hidden flex items-center justify-center font-bold">
+        images or graphic
+      </div>
+      
+      <form onSubmit={handleLogin} className="flex flex-col justify-center items-center p-5 gap-4 w-72">
+        <h2 className="font-['Syne'] text-xl">Login to TrendUp</h2>
         <input
           type="email"
           placeholder="Email / username"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          className="p-2 text-base rounded-lg border-none w-full bg-neutral-800 text-gray-200"
         />
         <input
           type="password"
@@ -37,10 +41,30 @@ export default function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          className="p-2 text-base rounded-lg border-none w-full bg-neutral-800 text-gray-200"
         />
-        <button id="logintype" type="submit">
+            <ShimmerButton   type="submit"
+          className="pl-16 pr-16 bg-transparent">  
           Login on TrendUp
-          <BorderBeam
+     </ShimmerButton>
+        {message && (
+          <div className="mt-1 p-2 rounded-lg text-gray-100 font-bold text-sm text-center">
+            {message}
+          </div>
+        )}
+
+     <p>forget password</p>
+
+        <p className="text-blue-500">Don't have an account?</p>
+        <a 
+          href="/signup" 
+          className="py-2 px-2.5 rounded-2xl w-1/2 text-center bg-gray-400 shadow-md shadow-black text-black transition-all duration-300 ease-in-out border-none cursor-pointer hover:bg-white hover:shadow-red-900"
+        >
+          Sign up
+        </a>
+      </form>
+      
+      <BorderBeam
         size={500}
         initialOffset={20}
         className="from-transparent via-blue-500 to-transparent"
@@ -50,19 +74,6 @@ export default function Login() {
           damping: 50,
         }}
       />
-        </button>
-
-        {message && <div className="msg">{message}</div>}
-
-        <p>
-          <a href="#">Forgot password?</a>
-        </p>
-       
-        <p>Don't have an account?</p> 
-        <a href="/signup" id="signup">
-          Sign up
-        </a>
-      </form>
     </div>
   );
 }
