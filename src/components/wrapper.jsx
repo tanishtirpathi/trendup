@@ -1,7 +1,7 @@
 import React from "react";
 import TextPressure from "./animation/TextPressure";
 import CountUp from "./animation/counup";
-
+import { InteractiveHoverButton } from "./magicui/interactive-hover-button";
 function Wrapper() {
   return (
     <div className="bg-black w-screen h-screen">
@@ -21,7 +21,7 @@ function Wrapper() {
           minFontSize={6}
         />
       </div>
-      <div className="flex items-center justify-center" style={{ margin: "-100px 100px " }}>
+      <div className="flex items-center justify-center" style={{ margin: "-100px 100px  " }}>
         <h1 className="text-2xl text-white">
           
         Welcome to Trend Up — the social media space where trends take flight.
@@ -29,6 +29,10 @@ function Wrapper() {
           in a place built entirely with sleek, responsive frontend magic.
 
         </h1>
+      </div>
+      <div id="button">
+      <InteractiveHoverButton>Interactive Hover Button</InteractiveHoverButton>
+
       </div>
     </div>
   );
