@@ -18,6 +18,7 @@ function Wrapper() {
     strokeColor="#ff0000"
     minFontSize={6}
   />
+  
 </div>
     </div>
 
