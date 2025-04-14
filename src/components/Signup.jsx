@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import "./Auth.css";
 import { BorderBeam } from "./magicui/border-beam";
+import { ShimmerButton } from "./magicui/shimmer-button";
+import { ShinyButton } from "./magicui/shiny-button";
+
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -10,48 +12,88 @@ export default function Signup() {
     e.preventDefault();
     window.location.href = "/";
   };
+  const handleLogin = () => {
+    window.location.href = "/login";
+  };
 
   return (
-    <div className="auth-container">
-      <div className="auth-graphic">images or graphic</div>
-      <form onSubmit={handleSignup} className="auth-box">
-        <h2>Sign up in trend up</h2>
+    <div className="flex justify-around items-center h-screen w-screen overflow-scroll bg-gradient-to-br from-[#0d0d0d] via-black to-[#002d81] text-white gap-8 p-4">
+      {/* Font imports with script tag instead of CSS import */}
+      <style>
+        {`
+          @import url("https://fonts.googleapis.com/css2?family=Borel&family=Homemade+Apple&family=Montserrat:ital,wght@0,100..900;1,100..900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Poetsen+One&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Stalinist+One&family=Syne:wght@400..800&family=Yellowtail&display=swap");
+          
+          /* Hide scrollbars for all browsers */
+          ::-webkit-scrollbar {
+            display: none;
+          }
+          html {
+            scrollbar-width: none;
+          }
+          body {
+            -ms-overflow-style: none;
+          }
+        `}
+      </style>
+
+      <div className="w-[300px] h-[300px] bg-gray-400 flex items-center justify-center font-bold overflow-hidden">
+        images or graphic
+      </div>
+      
+      <form onSubmit={handleSignup} className="flex flex-col justify-center items-center p-5 gap-4 w-[300px]">
+        <h2 className="font-['syne'] text-xl">Sign up in trend up</h2>
+        
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          className="p-2 text-base rounded-lg border-none w-full bg-[#363636] text-gray-200"
         />
+        
         <input
           type="text"
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
+          className="p-2 text-base rounded-lg border-none w-full bg-[#363636] text-gray-200"
         />
+        
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          className="p-2 text-base rounded-lg border-none w-full bg-[#363636] text-gray-200"
         />
-        <button id="signintype" type="submit">
-          Sign up on trend up
-                  <BorderBeam
-                  size={500}
-                  initialOffset={20}
-                  className="from-transparent via-blue-500 to-transparent"
-                  transition={{
-                    type: "spring",
-                    stiffness: 80,
-                    damping: 50,
-                  }}
-                />
-        </button>
-        <p>Already have an account?</p>
-        <a href="/login">Login on trend up</a>
+        
+      
+              <ShimmerButton 
+                 type="submit"
+                 className="px-14 py-1 bg-transparent"
+               >
+                 Sign up 
+               </ShimmerButton>
+          <BorderBeam
+            size={500}
+            initialOffset={20}
+            className="from-transparent via-blue-500 to-transparent"
+            transition={{
+              type: "spring",
+              stiffness: 80,
+              damping: 50,
+            }}
+          />
+     
+        
+        <p className="text-[#0088f8]">Already have an account?</p>
+        
+         <ShinyButton onClick={handleLogin}>
+              <p className="text-white">  Login on trend up </p> 
+               </ShinyButton>
       </form>
     </div>
   );
