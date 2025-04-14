@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ShinyButton } from "./magicui/shiny-button";
 import { BorderBeam } from "./magicui/border-beam";
 import { ShimmerButton } from "./magicui/shimmer-button";
 
@@ -44,7 +45,7 @@ export default function Login() {
           className="p-2 text-base rounded-lg border-none w-full bg-neutral-800 text-gray-200"
         />
             <ShimmerButton   type="submit"
-          className="pl-16 pr-16 bg-transparent">  
+          className="pl-14 pr-14 bg-transparent">  
           Login on TrendUp
      </ShimmerButton>
         {message && (
@@ -56,12 +57,11 @@ export default function Login() {
      <p>forget password</p>
 
         <p className="text-blue-500">Don't have an account?</p>
-        <a 
-          href="/signup" 
-          className="py-2 px-2.5 rounded-2xl w-1/2 text-center bg-gray-400 shadow-md shadow-black text-black transition-all duration-300 ease-in-out border-none cursor-pointer hover:bg-white hover:shadow-red-900"
+      <ShinyButton>  <a 
+          href="/signup" className="text-white"
         >
           Sign up
-        </a>
+        </a></ShinyButton>
       </form>
       
       <BorderBeam
