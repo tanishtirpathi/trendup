@@ -56,6 +56,7 @@ form h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px 10px ;
   gap: 1rem;
   width: 300px;
 }
@@ -106,7 +107,7 @@ form h2 {
   border: 1px solid white;
 }
 .auth-box p {
-  color: #ff0000;
+  color: #0088f8;
 }
 #signup {
   padding: 7px 10px;

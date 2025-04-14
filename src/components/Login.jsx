@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Auth.css";
+import { BorderBeam } from "./magicui/border-beam";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ export default function Login() {
     <div className="auth-container">
       <div className="auth-graphic">images or graphic</div>
       <form onSubmit={handleLogin} className="auth-box">
-        <h2>Login to TrendUp</h2>
+      <h2>Login to TrendUp</h2>
         <input
           type="email"
           placeholder="Email / username"
@@ -39,6 +40,16 @@ export default function Login() {
         />
         <button id="logintype" type="submit">
           Login on TrendUp
+          <BorderBeam
+        size={500}
+        initialOffset={20}
+        className="from-transparent via-blue-500 to-transparent"
+        transition={{
+          type: "spring",
+          stiffness: 80,
+          damping: 50,
+        }}
+      />
         </button>
 
         {message && <div className="msg">{message}</div>}
@@ -46,7 +57,8 @@ export default function Login() {
         <p>
           <a href="#">Forgot password?</a>
         </p>
-        <p>Don't have an account?</p>
+       
+        <p>Don't have an account?</p> 
         <a href="/signup" id="signup">
           Sign up
         </a>
