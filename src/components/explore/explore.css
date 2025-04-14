@@ -1,42 +1,23 @@
-/* General styles */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+aside{
 
-/* Masonry grid styles */
-.masonry-grid {
-  display: flex;
-  width: 100%;
-  margin-left: -16px; /* Adjust based on your desired gutter size */
+  width: 20%;
 }
-
-.masonry-grid_column {
-  padding-left: 16px; /* Adjust based on your desired gutter size */
-  background-clip: padding-box;
+image:hover{
+    transform: scale(1.4);
+    box-shadow: 2px 2px 10px red;
 }
-
-/* Image card styles */
-.masonry-grid_column > div {
-  margin-bottom: 16px; /* Adjust based on your desired vertical gap */
-}
-
-/* Custom scrollbar for the main content */
-#scrollable-main::-webkit-scrollbar {
-  width: 8px;
-}
-
-#scrollable-main::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-}
-
-#scrollable-main::-webkit-scrollbar-thumb {
-  background: rgba(59, 130, 246, 0.5);
-  border-radius: 4px;
-}
-
-#scrollable-main::-webkit-scrollbar-thumb:hover {
-  background: rgba(59, 130, 246, 0.8);
-}
+.my-masonry-grid {
+    display: flex;
+    margin-left: -16px; /* gutter size offset */
+    width: auto;
+  }
+  .my-masonry-grid_column {
+    padding-left: 16px; /* gutter size */
+    background-clip: padding-box;
+  }
+  .my-masonry-grid_column > img {
+    margin-bottom: 16px;
+    width: 100%;
+    border-radius: 0.5rem;
+  }
+  

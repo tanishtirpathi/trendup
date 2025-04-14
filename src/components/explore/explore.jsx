@@ -3,6 +3,10 @@ import { Home, Layers, Settings, User, BarChart } from "lucide-react";
 import Masonry from "react-masonry-css";
 import axios from "axios";
 import "./explore.css";
+"use client";
+import confetti from "canvas-confetti";
+import { Button } from "@/components/ui/button";
+
 
 function Explore() {
   const [images, setImages] = useState([]);
@@ -19,37 +23,47 @@ function Explore() {
     },
   });
 
-  useEffect(() => {
-    const generatePlaceholderImages = () => {
-      const heights = [200, 250, 300, 350, 400, 450, 500, 550, 600];
-      const generatedImages = [];
 
-      for (let i = 0; i < 20; i++) {
-        const height = heights[Math.floor(Math.random() * heights.length)];
-
-        generatedImages.push({
-          id: i,
-          url: `/api/placeholder/300/${height}`,
-          photographer: "Placeholder",
-          alt: "Placeholder Image",
-        });
-      }
-      return generatedImages;
+  const handleClick = () => {
+    const end = Date.now() + 3 * 1000; // 3 seconds
+    const colors = ["#a786ff", "#fd8bbc", "#eca184", "#f8deb1"];
+ 
+    const frame = () => {
+      if (Date.now() > end) return;
+ 
+      confetti({
+        particleCount: 2,
+        angle: 60,
+        spread: 55,
+        startVelocity: 60,
+        origin: { x: 0, y: 0.5 },
+        colors: colors,
+      });
+      confetti({
+        particleCount: 2,
+        angle: 120,
+        spread: 55,
+        startVelocity: 60,
+        origin: { x: 1, y: 0.5 },
+        colors: colors,
+      });
+ 
+      requestAnimationFrame(frame);
     };
-    setImages(generatePlaceholderImages());
-  }, []);
+ 
+    frame();
 
+
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 1500); 
+
+  };
+ 
   const fetchImages = async (num) => {
     try {
       const res = await client.get(`/curated?per_page=${num}`);
-      setImages(
-        res.data.photos.map((photo) => ({
-          id: photo.id,
-          url: photo.src.large,
-          photographer: photo.photographer,
-          alt: photo.alt || "Pexels Image",
-        }))
-      );
+      setImages((prev) => [...prev, ...res.data.photos]);
     } catch (err) {
       console.error("Error fetching images", err);
     }
@@ -67,7 +81,7 @@ function Explore() {
         container.scrollHeight - container.scrollTop <=
         container.clientHeight + 500
       ) {
-        setCount((prev) => prev + 10);
+        setCount((prev) => prev + 6);
       }
     };
 
@@ -77,6 +91,9 @@ function Explore() {
 
   return (
     <div className="flex h-screen w-screen font-sans text-white overflow-hidden">
+      {/* Sidebar */}   <div className="fixed bottom-10 left-10">
+      <Button onClick={handleClick}>log out</Button>
+    </div>
       <aside className="h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-r border-blue-900 shadow-xl">
         <div className="mb-10 flex items-center gap-3">
           <div className="bg-white w-10 h-10 rounded-full" />
@@ -90,11 +107,7 @@ function Explore() {
               label: "Explore",
               path: "/explore",
             },
-            {
-              icon: <BarChart size={18} />,
-              label: "notification",
-              path: "/notification",
-            },
+            { icon: <BarChart size={18} />, label: "notification", path: "/notification" },
             { icon: <User size={18} />, label: "Profile", path: "/profile" },
             {
               icon: <Settings size={18} />,
@@ -120,66 +133,25 @@ function Explore() {
         id="scrollable-main"
         className="w-full h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 overflow-scroll"
       >
-        {/* Replace the grid div with Masonry component */}
         <Masonry
-          breakpointCols={{
-            default: 5,
-            1536: 5,
-            1280: 4,
-            1024: 3,
-            768: 2,
-            640: 1,
-          }}
-          className="flex w-full -ml-4"
-          columnClassName="pl-4 bg-clip-padding"
-        >{zoomedImageId && (
-          <div
-            className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-6 cursor-pointer"
-            onClick={() => setZoomedImageId(null)}
-          >
+          breakpointCols={{ default: 5, 1100: 2, 700: 3, 500: 4, 300: 1 }}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column"
+        >
+          {images.map((img) => (
             <img
-              src={images.find(img => img.id === zoomedImageId)?.url}
-              alt="Zoomed"
-              className="max-w-full max-h-full rounded-lg shadow-lg object-contain"
+              key={img.id}
+              src={img.src.large}
+              alt={img.alt || "pexels image"}
+              className={`rounded-lg shadow-md mb-4 cursor-pointer transition-all duration-300 ease-in-out ${
+                zoomedImageId === img.id
+                  ? "fixed top-0 left-0 w-screen h-screen object-contain bg- z-50 p-10  "
+                  : "hover:scale-130"
+              }`}
+              onClick={() =>
+                setZoomedImageId(zoomedImageId === img.id ? null : img.id)
+              }
             />
-          </div>
-        )}
-        
-          {images.map((image) => (
-            <div
-              key={image.id}
-              className="mb-4 relative group overflow-hidden rounded-lg transform transition-all duration-300 hover:shadow-lg hover:scale-110"
-            >
-             <img
-  src={image.url}
-  alt={image.alt || "pexels image"}
-  className="rounded-lg shadow-md mb-4 cursor-pointer transition-all duration-300 ease-in-out hover:scale-105"
-  onClick={() => setZoomedImageId(image.id)}
-/>
-
-                
-                onClick={() =>
-                  setZoomedImageId(zoomedImageId === image.id ? null : image.id)
-                }
-              />
-              <div className="absolute inset-0 bg-transparent bg-opacity-0 group-hover:bg-opacity-20 transition-opacity duration-300"></div>
-              <button className="absolute top-2 right-2 bg-blue-600 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
-                  />
-                </svg>
-              </button>
-            </div>
           ))}
         </Masonry>{" "}
         {zoomedImageId && (
