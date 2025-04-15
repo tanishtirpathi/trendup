@@ -96,7 +96,7 @@ function Explore() {
     </div>
       <aside className="h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-r border-blue-900 shadow-xl">
         <div className="mb-10 flex items-center gap-3">
-          <div className="bg-white w-10 h-10 rounded-full" />
+          <img src="./logo-tr.png" className=" w-14 h-14" />
           <span className="text-xl font-bold tracking-wide">Dashboard</span>
         </div>
         <nav className="flex flex-col gap-6 text-base">
