@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Home, Layers, Settings, User, BarChart } from "lucide-react";
+import { Home, Layers, Crown, User, Code } from "lucide-react";
 import Masonry from "react-masonry-css";
 import axios from "axios";
 import "./explore.css";
@@ -107,12 +107,12 @@ function Explore() {
               label: "Explore",
               path: "/explore",
             },
-            { icon: <BarChart size={18} />, label: "notification", path: "/notification" },
+            { icon: < Code size={18} />, label: "Premium", path: "/premium" },
             { icon: <User size={18} />, label: "Profile", path: "/profile" },
             {
-              icon: <Settings size={18} />,
-              label: "Settings",
-              path: "/settings",
+              icon: <Crown size={18} />,
+              label: "about",
+              path: "/about  ",
             },
           ].map((item, index) => (
             <a

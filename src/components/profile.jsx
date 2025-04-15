@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Home, Layers, Settings, User, BarChart } from "lucide-react";
+import { Home, Layers, Crown, User, Code } from "lucide-react";
 ("use client");
 import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
@@ -82,16 +82,13 @@ function Profile() {
               label: "Explore",
               path: "/explore",
             },
-            {
-              icon: <BarChart size={18} />,
-              label: "notification",
-              path: "/notification",
-            },
+            { icon: < Code size={18} />, label: "Premium", path: "/premium" },
+            
             { icon: <User size={18} />, label: "Profile", path: "/profile" },
             {
-              icon: <Settings size={18} />,
-              label: "Settings",
-              path: "/settings",
+              icon: <Crown size={18} />,
+              label: "about",
+              path: "/about  ",
             },
           ].map((item, index) => (
             <a

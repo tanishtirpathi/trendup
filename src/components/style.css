@@ -1,14 +1,31 @@
-nav{
-    margin: 60px 20px;
-
+nav {
+  margin: 60px 20px;
 }
 
-.imageside{
-    display: flex;
-    align-items:center;
-    justify-content: start;
+.imageside {
+  display: flex;
+  align-items: center;
+  justify-content: start;
 }
-button{
-    box-shadow:2px 2px 12px rgb(192, 192, 192);
-
+button {
+  box-shadow: 2px 2px 12px rgb(192, 192, 192);
+}
+SheetHeader {
+  margin: -40px;
+}
+#HoverCardTrigger {
+  box-shadow: 2px 2px 20px white;
+  padding:8px  30px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+#PopoverTrigger{
+    box-shadow: 2px 2px 20px white;
+    padding:8px  40px;
+    background: #000;
+    cursor: pointer;
+    border-radius: 8px;
+}
+#logout{
+    box-shadow: 2px 2px 5px white;
 }
