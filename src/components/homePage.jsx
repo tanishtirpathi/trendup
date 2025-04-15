@@ -49,6 +49,7 @@ const App = () => {
     const data = await response.json();
     setProfileData(data);
   };
+  const items = Array.from({ length: 12 });
 
   const handleClick = () => {
     const end = Date.now() + 3 * 1000; // 3 seconds
@@ -181,7 +182,7 @@ const App = () => {
           </li>
         </ul>
 
-        <div className="fixed bottom-10 right-10">
+         <div className="fixed bottom-10 right-10">
           <Button
             id="logout"
             className="bg-black px-10  "
@@ -194,14 +195,22 @@ const App = () => {
 
       {/* Main Content */}
       <main className="flex-1 ml-64 mr-56 h-screen overflow-y-auto bg-gradient-to-br from-black via-black-900 to-gray-950 p-8">
-        <div className="flex gap-4 overflow-x-auto mb-4">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <div key={i} className="w-14 h-14 bg-red-300 rounded-full" />
-          ))}
-        </div>
+      <div className="flex flex-row gap-4 overflow-x-auto mb-10">
+  {items.map((_, i) => (
+    <div className=" mb-4 ">
+    <img
+    src="./logo.png"
+      key={i}
+      className="w-[56px] h-[56px]  rounded-full shrink-0 "
+      style={{border:"3px solid white"}}
+    />
+    <h4 className="text-white">userName</h4></div>
+  ))}
+ 
+</div>
 
         <div className="flex flex-col space-y-6 mx-10">
-          {Array.from({ length: 12 }).map((_, i) => (
+          {Array.from({ length: 8 }).map((_, i) => (
             <div
               key={i}
               className="w-full p-5 rounded-md bg-gray-950 bg-opacity-10 border border-white-900"
