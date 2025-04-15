@@ -131,7 +131,7 @@ function Explore() {
 
       <main
         id="scrollable-main"
-        className="w-full h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 overflow-scroll"
+        className="w-full h-screen bg-black p-6 overflow-scroll"
       >
         <Masonry
           breakpointCols={{ default: 5, 1100: 2, 700: 3, 500: 4, 300: 1 }}

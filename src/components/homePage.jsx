@@ -130,10 +130,10 @@ const App = () => {
         <h2 className="text-lg font-bold mb-4 text-white-400">
           welcome :-trend up{" "}
         </h2>
-        <ul className="space-y-4 text-sm">
+        <ul className="space-y-6 text-sm">
           <li>
             <Sheet>
-              <SheetTrigger className="text-white hover:text-gray-400 flex items-center gap-2 bg-transparent ">
+              <SheetTrigger className="text-white hover:text-gray-400 flex items-center gap-2 bg-gray-900 ">
                 notification
               </SheetTrigger>
 
@@ -157,7 +157,7 @@ const App = () => {
           </li>
           <li>
             <HoverCard>
-              <HoverCardTrigger id="HoverCardTrigger" className="text-white">
+              <HoverCardTrigger id="HoverCardTrigger" className="text-white  bg-gray-900">
                 Balance
               </HoverCardTrigger>
               <HoverCardContent>
@@ -167,7 +167,7 @@ const App = () => {
           </li>
           <li>
             <Popover>
-              <PopoverTrigger id="PopoverTrigger">code</PopoverTrigger>
+              <PopoverTrigger id="PopoverTrigger" className="bg-gray-900" >code</PopoverTrigger>
 
               <PopoverContent className="bg-black text-white w-50">
                 <a
@@ -185,7 +185,7 @@ const App = () => {
          <div className="fixed bottom-10 right-10">
           <Button
             id="logout"
-            className="bg-black px-10  "
+            className="bg-gray-900 px-10  "
             onClick={handleClick}
           >
             log out
@@ -194,7 +194,7 @@ const App = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 ml-64 mr-56 h-screen overflow-y-auto bg-gradient-to-br from-black via-black-900 to-gray-950 p-8">
+      <main className="flex-1 ml-64 mr-56 bg-black h-screen overflow-y-auto p-8">
       <div className="flex flex-row gap-4 overflow-x-auto mb-10">
   {items.map((_, i) => (
     <div className=" mb-4 ">
@@ -209,11 +209,12 @@ const App = () => {
  
 </div>
 
-        <div className="flex flex-col space-y-6 mx-10">
+        <div className="flex flex-col space-y-6 mx-10" >
           {Array.from({ length: 8 }).map((_, i) => (
             <div
               key={i}
-              className="w-full p-5 rounded-md bg-gray-950 bg-opacity-10 border border-white-900"
+              id="div"
+              className="w-full p-5 rounded-md bg-gray-950 bg-opacity-10 border border-black"
             >
               <div className="flex items-center gap-4 mb-2">
                 {profileData && (

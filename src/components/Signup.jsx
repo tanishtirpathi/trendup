@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BorderBeam } from "./magicui/border-beam";
 import { ShimmerButton } from "./magicui/shimmer-button";
 import { ShinyButton } from "./magicui/shiny-button";
-
+import './auth.css'
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -100,7 +100,7 @@ export default function Signup() {
         
         <p className="text-[#0088f8]">Already have an account?</p>
         
-         <ShinyButton onClick={handleLogin}>
+         <ShinyButton id="ShinyButton" onClick={handleLogin}>
               <p className="text-white">  Login on trend up </p> 
                </ShinyButton>
       </form>

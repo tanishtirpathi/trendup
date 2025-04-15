@@ -13,26 +13,25 @@ nav {
   justify-content: start;
 }
 button {
-  box-shadow: 2px 2px 12px rgb(192, 192, 192);
+  box-shadow: 0px 0px 2px white;
 }
 SheetHeader {
   margin: -40px;
 }
 #HoverCardTrigger {
-  box-shadow: 2px 2px 20px white;
+  box-shadow: 0px 0px 2px white;
   padding:8px  30px;
   cursor: pointer;
   border-radius: 8px;
 }
 #PopoverTrigger{
-    box-shadow: 2px 2px 20px white;
+    box-shadow: 0px 0px 2px white;
     padding:8px  40px;
-    background: #000;
     cursor: pointer;
     border-radius: 8px;
 }
 #logout{
-    box-shadow: 2px 2px 5px white;
+  box-shadow: 0px 0px 2px white;
 }/* styles.css or global.css */
 * {
   scrollbar-width: thin;
@@ -57,4 +56,8 @@ SheetHeader {
 
 *::-webkit-scrollbar-thumb:hover {
   background-color: #003e77; /* red-500 */
+}
+
+#div{
+  background:#14131a;
 }
