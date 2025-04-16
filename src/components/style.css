@@ -35,7 +35,7 @@ SheetHeader {
 }/* styles.css or global.css */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #71b7f8 #000000; /* thumb color and track color */
+  scrollbar-color: #004d96 #000000; /* thumb color and track color */
 }
 
 *::-webkit-scrollbar {
@@ -49,7 +49,7 @@ SheetHeader {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #71b7f8; /* red-400 */
+  background-color:rgb(0, 100, 194); /* red-400 */
   border-radius: 8px;
   border: 2px solid #000000;
 }

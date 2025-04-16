@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
+
 import {
   Popover,
   PopoverContent,
@@ -91,7 +92,7 @@ const App = () => {
   return (
     <div className="flex h-screen w-screen font-sans text-white overflow-hidden">
       {/* Left Sidebar */}
-      <aside className="fixed h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-r border-blue-900 shadow-xl">
+      <aside className=" h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-r border-blue-900 shadow-xl">
         <div className="mb-10 flex items-center gap-3">
           <img src="./logo-tr.png" className=" w-14 h-14 " />
           <span className="text-xl font-bold tracking-wide">Dashboard</span>
@@ -124,9 +125,72 @@ const App = () => {
           ))}
         </nav>
       </aside>
+      {/* Main Content */}
+      <main className="flex-1 bg-black h-screen overflow-y-auto p-8">
+        <div className="flex flex-row gap-4 overflow-x-auto mb-10">
+          {items.map((_, i) => (
+            <div className=" mb-4 ">
+              <img
+                src="./logo.png"
+                key={i}
+                className="w-[56px] h-[56px]  rounded-full shrink-0 "
+                style={{ border: "3px solid cyan" }}
+              />
+              <h4 className="text-white">userName</h4>
+            </div>
+          ))}
+        </div>
+<section className="px-22 space-y-10">
+  {Array.from({ length: 5 }).map((_, i) => (
+    <div
+      key={i}
+      className="w-140 p-6 rounded-xl bg-gray-900"
+    >
+      {/* User Info */}
+      <div className="flex items-center gap-4 mb-4">
+        {profileData && (
+          <img
+            src={profileData.avatar_url}
+            alt="avatar"
+            className="h-12 w-12 rounded-full border border-zinc-600"
+          />
+        )}
+        <h2 className="text-lg text-white font-bold">User name #{i + 1}</h2>
+      </div>
 
+      <p className="text-sm text-zinc-300 leading-relaxed">
+        Everyone Wants a Happy Ending, Right? But It Doesn't Always Roll That Way.
+      </p>
+      <img
+        src="./tweet.jpg"
+        alt="post"
+        className="w-120 h-64 object-cover rounded-lg border border-zinc-700 mt-4"
+      />
+
+    
+      <div className="flex justify-around items-center mt-6 text-zinc-400">
+        <div className="flex flex-col items-center group cursor-pointer">
+          <Heart className="group-hover:text-pink-500 transition" />
+          <span className="text-xs mt-1 group-hover:text-white">Like</span>
+        </div>
+
+        <div className="flex flex-col items-center group cursor-pointer">
+          <Share2 className="group-hover:text-blue-500 transition" />
+          <span className="text-xs mt-1 group-hover:text-white">Share</span>
+        </div>
+
+        <div className="flex flex-col items-center group cursor-pointer">
+          <Repeat2 className="group-hover:text-green-500 transition" />
+          <span className="text-xs mt-1 group-hover:text-white">Repeat</span>
+        </div>
+      </div>
+    </div>
+  ))}
+</section>
+
+      </main>
       {/* Right Sidebar */}
-      <aside className="w-56 h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-l border-blue-900 shadow-inner fixed top-0 right-0">
+      <aside className=" h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-l border-blue-900 shadow-inner ">
         <h2 className="text-lg font-bold mb-4 text-white-400">
           welcome :-trend up{" "}
         </h2>
@@ -157,7 +221,10 @@ const App = () => {
           </li>
           <li>
             <HoverCard>
-              <HoverCardTrigger id="HoverCardTrigger" className="text-white  bg-gray-900">
+              <HoverCardTrigger
+                id="HoverCardTrigger"
+                className="text-white  bg-gray-900"
+              >
                 Balance
               </HoverCardTrigger>
               <HoverCardContent>
@@ -167,7 +234,9 @@ const App = () => {
           </li>
           <li>
             <Popover>
-              <PopoverTrigger id="PopoverTrigger" className="bg-gray-900" >code</PopoverTrigger>
+              <PopoverTrigger id="PopoverTrigger" className="bg-gray-900">
+                code
+              </PopoverTrigger>
 
               <PopoverContent className="bg-black text-white w-50">
                 <a
@@ -182,7 +251,7 @@ const App = () => {
           </li>
         </ul>
 
-         <div className="fixed bottom-10 right-10">
+        <div className="fixed bottom-10 right-10">
           <Button
             id="logout"
             className="bg-gray-900 px-10  "
@@ -192,68 +261,6 @@ const App = () => {
           </Button>
         </div>
       </aside>
-
-      {/* Main Content */}
-      <main className="flex-1 ml-64 mr-56 bg-black h-screen overflow-y-auto p-8">
-      <div className="flex flex-row gap-4 overflow-x-auto mb-10">
-  {items.map((_, i) => (
-    <div className=" mb-4 ">
-    <img
-    src="./logo.png"
-      key={i}
-      className="w-[56px] h-[56px]  rounded-full shrink-0 "
-      style={{border:"3px solid white"}}
-    />
-    <h4 className="text-white">userName</h4></div>
-  ))}
- 
-</div>
-
-        <div className="flex flex-col space-y-6 mx-10" >
-          {Array.from({ length: 8 }).map((_, i) => (
-            <div
-              key={i}
-              id="div"
-              className="w-full p-5 rounded-md bg-gray-950 bg-opacity-10 border border-black"
-            >
-              <div className="flex items-center gap-4 mb-2">
-                {profileData && (
-                  <img
-                    src={profileData.avatar_url}
-                    className="h-10 w-10 rounded-full"
-                    alt="GitHub Avatar"
-                  />
-                )}
-                <h2 className="text-lg font-semibold">User name #{i + 1}</h2>
-              </div>
-              <p className=" mx-10 text-sm text-zinc-300">
-                Everyone Wants a Happy Ending, Right? But It Doesn't Always Roll
-                That Way.
-                <img
-                  className="w-full h-80 object-cover rounded-lg border border-white my-5"
-                  src="./tweet.jpg"
-                  alt=""
-                />
-              </p>
-              <div
-                id="icons"
-                className=" mx-10 flex justify-start items-centers"
-              >
-                <div className="px-5  flex-col justify-center items-centers">
-                  <Heart /> <h3 className="py-1">Like</h3>
-                </div>{" "}
-                <div className="px-5 flex-col justify-center items-centers">
-                  {" "}
-                  <Share2 /> <h3 className="py-1 "> Share</h3>
-                </div>  
-                <div className="px-5 flex-col justify-center items-centers">
-                  <Repeat2 /> <h3 className="py-1 ">Repeat</h3>
-                </div>{" "}
-              </div>
-            </div>
-          ))}
-        </div>
-      </main>
     </div>
   );
 };
