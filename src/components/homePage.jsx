@@ -89,7 +89,34 @@ const App = () => {
   useEffect(() => {
     fetchGitHubData();
   }, []);
+  const suggestions = [
+    {
+      username: "pa.rshant9832",
+      subtitle:"followed by @tanish.tirpathi"
+    
 
+    },
+    {
+      username: "bike_crashes02",
+      subtitle:"followed by @tanish.tirpathi"
+
+    },
+    {
+      username: "artist_deepak_7",
+      subtitle:"followed by @tanish.tirpathi"
+
+    },
+    {
+      username: "radhaarya926",
+      subtitle:"followed by @tanish.tirpathi"
+
+    },
+    {
+      username: "weightlifter_uday",
+      subtitle:"followed by @tanish.tirpathi"
+
+    },
+  ];
   return (
     <div className="flex h-screen w-screen font-sans text-white overflow-hidden">
       {/* Left Sidebar */}
@@ -98,7 +125,7 @@ const App = () => {
           <img src="./logo-tr.png" className=" w-14 h-14 " />
           <span className="text-xl font-bold tracking-wide">Dashboard</span>
         </div>
-        <nav className="flex flex-col gap-6 text-base">
+        <nav className="flex-col justify-center items-center text-base">
           {[
             { icon: <Home size={18} />, label: "Home", path: "/main" },
             {
@@ -118,12 +145,33 @@ const App = () => {
             <a
               key={index}
               href={item.path}
-              className="flex items-center gap-3 text-white no-underline hover:text-blue-400 transition-all duration-200"
-            >
+              className =''           >
               {item.icon}
               {item.label}
             </a>
           ))}
+            <Sheet>
+              <SheetTrigger className="text-white hover:text-blue-400 flex items-center gap-2 bg-transparent  ">
+                notification
+              </SheetTrigger>
+
+              <SheetContent className="w-full sm:w-[380px] bg-black-900 flex flex-col items-center overflow-auto py-8 px-6">
+                {[...Array(12)].map((_, index) => (
+                  <div
+                    key={index}
+                    className="w-full bg-gray-900 rounded-lg shadow-md p-4 flex items-center gap-3"
+                  >
+                    <BellPlus className="text-white w-6 h-6" />
+                    <div>
+                      <h3 className="text-white text-xs font-light">Rahul :</h3>
+                      <p className="text-gray-300 text-sm">
+                        posted a new video.
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </SheetContent>
+            </Sheet>
         </nav>
       </aside>
       {/* Main Content */}
@@ -156,7 +204,7 @@ const App = () => {
                 className="w-[56px] h-[56px]  rounded-full shrink-0 "
                 id="story"
               />
-              <h4 className=" text-white font-light">userName</h4>
+              <h4 className="font-light">userName</h4>
             </div>
           ))}
         </div>
@@ -177,9 +225,9 @@ const App = () => {
                <div className="flex-col justify-start items-center "> <h2 className="text-l text-white font-bold">
                   User name #{i + 1}
                 </h2>
-                <h3 className=" px-1 text-xs text-blue font-light ">
+                <h4 className=" px-1 text-xs text-blue font-light ">
                    4hr ago
-                </h3></div>
+                </h4></div>
               </div>
 
               <p className="text-sm text-zinc-300 leading-relaxed">
@@ -192,22 +240,22 @@ const App = () => {
                 className="w-120 h-64 object-cover rounded-lg border border-zinc-700 mt-4"
               />
 
-              <div className="flex justify-around items-center mt-6 text-zinc-400">
-                <div className="flex flex-col items-center group cursor-pointer">
+              <div className="flex justify-start items-center mt-6 text-zinc-400">
+                <div className="flex flex-col px-3 items-center group cursor-pointer">
                   <Heart className="group-hover:text-pink-500 transition" />
                   <span className="text-xs mt-1 group-hover:text-white">
                     Like
                   </span>
                 </div>
 
-                <div className="flex flex-col items-center group cursor-pointer">
+                <div className="flex flex-col px-3 items-center group cursor-pointer">
                   <Share2 className="group-hover:text-blue-500 transition" />
                   <span className="text-xs mt-1 group-hover:text-white">
                     Share
                   </span>
                 </div>
 
-                <div className="flex flex-col items-center group cursor-pointer">
+                <div className="flex flex-col px-3 items-center group cursor-pointer">
                   <Repeat2 className="group-hover:text-green-500 transition" />
                   <span className="text-xs mt-1 group-hover:text-white">
                     Repeat
@@ -219,67 +267,29 @@ const App = () => {
         </section>
       </main>
       {/* Right Sidebar */}
-      <aside className=" h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-l border-blue-900 shadow-inner ">
-        <h2 className="text-lg font-bold mb-4 text-white-400">
-          welcome :-trend up{" "}
+      <aside  className="w-[320px] h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-l border-blue-900 shadow-inner ">
+        <h2 className="text-xl font-light mb-4 text-white-400 flex justify-center items-center">
+        follow new people <User size={18} className="mt-1 mx-2" />
         </h2>
-        <ul className="space-y-6 text-sm">
-          <li>
-            <Sheet>
-              <SheetTrigger className="text-white hover:text-gray-400 flex items-center gap-2 bg-gray-900 ">
-                notification
-              </SheetTrigger>
+        <div className=" text-white w-full max-w-sm p-4 space-y-4">
+      {suggestions.map((user, index) => (
+        <div key={index} className="flex w-[250px]  bg-gray-900 rounded-lg px-3 py-2 items-center justify-between hover:bg-gray-800 trasition cursor-pointer">
+          <div className="flex items-center gap-3">
+            <img
+              src="./logo.png"
+              alt={user.username}
+              className="w-10 h-10 rounded-full object-cover"
+            />
+            <div className="text-sm">
+              <div className="font-medium">{user.username}</div>
+              <div className="text-gray-400 text-xs truncate">{user.subtitle}</div>
+            </div>
+            <User className="w-5 h-5"/>
+          </div>
 
-              <SheetContent className="w-full sm:w-[380px] bg-gray-900 flex flex-col items-center overflow-auto py-8 px-6">
-                {[...Array(12)].map((_, index) => (
-                  <div
-                    key={index}
-                    className="w-full bg-gray-800 rounded-lg shadow-md p-4 flex items-center gap-3"
-                  >
-                    <BellPlus className="text-blue-500 w-6 h-6" />
-                    <div>
-                      <h3 className="text-white font-semibold">Rahul :</h3>
-                      <p className="text-gray-300 text-sm">
-                        posted a new video.
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </SheetContent>
-            </Sheet>
-          </li>
-          <li>
-            <HoverCard>
-              <HoverCardTrigger
-                id="HoverCardTrigger"
-                className="text-white  bg-gray-900"
-              >
-                Balance
-              </HoverCardTrigger>
-              <HoverCardContent>
-                you have currently <b>34</b> coin in your account balance.
-              </HoverCardContent>
-            </HoverCard>
-          </li>
-          <li>
-            <Popover>
-              <PopoverTrigger id="PopoverTrigger" className="bg-gray-900">
-                code
-              </PopoverTrigger>
-
-              <PopoverContent className="bg-black text-white w-50">
-                <a
-                  href="https://github.com/tanishtirpathi/trendup"
-                  className="text-white"
-                >
-                  {" "}
-                  source code{" "}
-                </a>{" "}
-              </PopoverContent>
-            </Popover>
-          </li>
-        </ul>
-
+        </div>
+      ))}
+    </div>
         <div className="fixed bottom-10 right-10">
           <Button
             id="logout"

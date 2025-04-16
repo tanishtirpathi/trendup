@@ -1,10 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap");
 
-body{
+body {
   font-family: syne;
 }
 nav {
   margin: 60px 20px;
+}
+h4 {
+  color: rgb(202, 202, 202);
+}
+nav a {
+  display: flex;
+  align-items: center;
+  gap:0.42rem;
+  color: #ffffff;
+  text-decoration: none;
+  transition-property: all;
+  padding: 9px 4px;
+  border-radius: 2px ;
+  margin: 15px 10px ;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+nav a:hover{
+  background: rgba(0, 82, 150, 0.733);
+  color: white;
 }
 
 .imageside {
@@ -18,42 +38,32 @@ button {
 SheetHeader {
   margin: -40px;
 }
-#HoverCardTrigger {
+
+#logout {
   box-shadow: 0px 0px 2px white;
-  padding:8px  30px;
-  cursor: pointer;
-  border-radius: 8px;
-}
-#PopoverTrigger{
-    box-shadow: 0px 0px 2px white;
-    padding:8px  40px;
-    cursor: pointer;
-    border-radius: 8px;
-}
-#logout{
-  box-shadow: 0px 0px 2px white;
-}/* styles.css or global.css */
+} /* styles.css or global.css */
 * {
   scrollbar-width: thin;
   scrollbar-color: #004d9667 #000000; /* thumb color and track color */
 }
-#post{background: #101828b0;
+#post {
+  background: #101828b0;
 }
-#post:hover{
+#post:hover {
   background: #101828;
   box-shadow: 3px 3px 20px #2b3852;
 }
-#story{
-border: 2px solid #006e6e8e;
-cursor: pointer;
-transition:all 0.3s ease-in;
+#story {
+  border: 2px solid #006e6e8e;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
 }
 
-#story:hover{
+#story:hover {
   border: 2px solid #00fffff8;
   cursor: pointer;
-  }
-  
+}
+
 *::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -65,7 +75,7 @@ transition:all 0.3s ease-in;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color:rgb(0, 75, 146); /* red-400 */
+  background-color: rgb(0, 75, 146); /* red-400 */
   border-radius: 8px;
   border: 2px solid #000000;
 }
@@ -74,6 +84,6 @@ transition:all 0.3s ease-in;
   background-color: #003e77; /* red-500 */
 }
 
-#div{
-  background:#14131a;
+#div {
+  background: #14131a;
 }
