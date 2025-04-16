@@ -35,9 +35,25 @@ SheetHeader {
 }/* styles.css or global.css */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #004d96 #000000; /* thumb color and track color */
+  scrollbar-color: #004d9667 #000000; /* thumb color and track color */
+}
+#post{background: #101828b0;
+}
+#post:hover{
+  background: #101828;
+  box-shadow: 3px 3px 20px #2b3852;
+}
+#story{
+border: 2px solid #006e6e8e;
+cursor: pointer;
+transition:all 0.3s ease-in;
 }
 
+#story:hover{
+  border: 2px solid #00fffff8;
+  cursor: pointer;
+  }
+  
 *::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -49,7 +65,7 @@ SheetHeader {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color:rgb(0, 100, 194); /* red-400 */
+  background-color:rgb(0, 75, 146); /* red-400 */
   border-radius: 8px;
   border: 2px solid #000000;
 }

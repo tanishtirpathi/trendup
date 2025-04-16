@@ -16,6 +16,7 @@ import {
 import {
   Home,
   Layers,
+  Plus,
   Crown,
   Share2,
   User,
@@ -50,7 +51,7 @@ const App = () => {
     const data = await response.json();
     setProfileData(data);
   };
-  const items = Array.from({ length: 12 });
+  const items = Array.from({ length: 6 });
 
   const handleClick = () => {
     const end = Date.now() + 3 * 1000; // 3 seconds
@@ -128,66 +129,94 @@ const App = () => {
       {/* Main Content */}
       <main className="flex-1 bg-black h-screen overflow-y-auto p-8">
         <div className="flex flex-row gap-4 overflow-x-auto mb-10">
+          <div className="flex flex-row gap-4 overflow-x-auto mb-10 px-4">
+            {profileData && (
+              <div className="flex flex-col items-center shrink-0">
+                <div className="relative cursor-pointer">
+                  <img
+                    src={profileData.avatar_url}
+                    alt="avatar"
+                    className="w-14 h-14 rounded-full object-cover"
+                  />
+                  {/* Plus icon positioned like Instagram story add */}
+                  <div className="absolute bottom-0 right-0 w-5 h-5 bg-blue-500 border-2 border-black rounded-full flex items-center justify-center">
+                    <Plus className="w-3 h-3 text-white" />
+                  </div>
+                </div>
+                <h4 className="text-white text-sm mt-2">Add Your</h4>
+              </div>
+            )}
+          </div>
+
           {items.map((_, i) => (
-            <div className=" mb-4 ">
+            <div className=" mb-4 mx-1 ">
               <img
                 src="./logo.png"
                 key={i}
                 className="w-[56px] h-[56px]  rounded-full shrink-0 "
-                style={{ border: "3px solid cyan" }}
+                id="story"
               />
-              <h4 className="text-white">userName</h4>
+              <h4 className=" text-white font-light">userName</h4>
             </div>
           ))}
         </div>
-<section className="px-22 space-y-10">
-  {Array.from({ length: 5 }).map((_, i) => (
-    <div
-      key={i}
-      className="w-140 p-6 rounded-xl bg-gray-900"
-    >
-      {/* User Info */}
-      <div className="flex items-center gap-4 mb-4">
-        {profileData && (
-          <img
-            src={profileData.avatar_url}
-            alt="avatar"
-            className="h-12 w-12 rounded-full border border-zinc-600"
-          />
-        )}
-        <h2 className="text-lg text-white font-bold">User name #{i + 1}</h2>
-      </div>
+        <section className="px-22 space-y-10">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div key={i} className="w-140 p-6 rounded-xl " id="post">
+              {/* User Info */}
+              <div className="flex items-center gap-1 mb-4">
+               
+               
+                {profileData && (
+                  <img
+                    src={profileData.avatar_url}
+                    alt="avatar"
+                    className="h-10 w-10 rounded-full border border-zinc-600"
+                  />
+                )}
+               <div className="flex-col justify-start items-center "> <h2 className="text-l text-white font-bold">
+                  User name #{i + 1}
+                </h2>
+                <h3 className=" px-1 text-xs text-blue font-light ">
+                   4hr ago
+                </h3></div>
+              </div>
 
-      <p className="text-sm text-zinc-300 leading-relaxed">
-        Everyone Wants a Happy Ending, Right? But It Doesn't Always Roll That Way.
-      </p>
-      <img
-        src="./tweet.jpg"
-        alt="post"
-        className="w-120 h-64 object-cover rounded-lg border border-zinc-700 mt-4"
-      />
+              <p className="text-sm text-zinc-300 leading-relaxed">
+                Everyone Wants a Happy Ending, Right? But It Doesn't Always Roll
+                That Way.
+              </p>
+              <img
+                src="./tweet.jpg"
+                alt="post"
+                className="w-120 h-64 object-cover rounded-lg border border-zinc-700 mt-4"
+              />
 
-    
-      <div className="flex justify-around items-center mt-6 text-zinc-400">
-        <div className="flex flex-col items-center group cursor-pointer">
-          <Heart className="group-hover:text-pink-500 transition" />
-          <span className="text-xs mt-1 group-hover:text-white">Like</span>
-        </div>
+              <div className="flex justify-around items-center mt-6 text-zinc-400">
+                <div className="flex flex-col items-center group cursor-pointer">
+                  <Heart className="group-hover:text-pink-500 transition" />
+                  <span className="text-xs mt-1 group-hover:text-white">
+                    Like
+                  </span>
+                </div>
 
-        <div className="flex flex-col items-center group cursor-pointer">
-          <Share2 className="group-hover:text-blue-500 transition" />
-          <span className="text-xs mt-1 group-hover:text-white">Share</span>
-        </div>
+                <div className="flex flex-col items-center group cursor-pointer">
+                  <Share2 className="group-hover:text-blue-500 transition" />
+                  <span className="text-xs mt-1 group-hover:text-white">
+                    Share
+                  </span>
+                </div>
 
-        <div className="flex flex-col items-center group cursor-pointer">
-          <Repeat2 className="group-hover:text-green-500 transition" />
-          <span className="text-xs mt-1 group-hover:text-white">Repeat</span>
-        </div>
-      </div>
-    </div>
-  ))}
-</section>
-
+                <div className="flex flex-col items-center group cursor-pointer">
+                  <Repeat2 className="group-hover:text-green-500 transition" />
+                  <span className="text-xs mt-1 group-hover:text-white">
+                    Repeat
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </section>
       </main>
       {/* Right Sidebar */}
       <aside className=" h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-l border-blue-900 shadow-inner ">
