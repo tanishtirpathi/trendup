@@ -4,6 +4,7 @@ import { Home, Layers, Crown, User, Code } from "lucide-react";
 import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
 import "./style.css";
+import RightBar from "./rightBar";
 
 function Profile() {
   const [loading, setLoading] = useState(true);
@@ -69,39 +70,11 @@ function Profile() {
 
   return (
     <div className="min-h-screen w-screen flex bg-gradient-to-br from-black via-gray-900 to-gray-950 text-white font-sans">
-      <aside className="h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-r border-blue-900 shadow-xl">
-        <div className="mb-10 flex items-center gap-3">
-          <img src="./logo-tr.png" className=" w-14 h-14" />
-          <span className="text-xl font-bold tracking-wide">Dashboard</span>
-        </div>
-        <nav className="flex flex-col gap-6 text-base">
-          {[
-            { icon: <Home size={18} />, label: "Home", path: "/main" },
-            {
-              icon: <Layers size={18} />,
-              label: "Explore",
-              path: "/explore",
-            },
-            { icon: < Code size={18} />, label: "Premium", path: "/premium" },
-            
-            { icon: <User size={18} />, label: "Profile", path: "/profile" },
-            {
-              icon: <Crown size={18} />,
-              label: "about",
-              path: "/about  ",
-            },
-          ].map((item, index) => (
-            <a
-              key={index}
-              href={item.path}
-              className="flex items-center gap-3 text-white no-underline hover:text-blue-400 transition-all duration-200"
-            >
-              {item.icon}
-              {item.label}
-            </a>
-          ))}
-        </nav>
-      </aside>
+          
+          <RightBar>
+  {/* children here if needed */}
+</RightBar>
+     
       <main className="flex-1 p-6 overflow-y-auto bg-gradient-to-br from-black via-gray-900 to-gray-950">
         {loading && <p className="text-center text-gray-300">Loading...</p>}
         {error && <p className="text-red-500 text-center">{error}</p>}
