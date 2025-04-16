@@ -1,43 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
-
-import {
-  Home,
-  Layers,
-  Plus,
-  Crown,
-  Share2,
-  User,
-  Heart,
-  Repeat2,
-  BellPlus,
-  Code,
-} from "lucide-react";
+import { Plus, Share2, User, Heart, Repeat2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import RandomImage from "../pages/RandomImages";
+      
+import RightBar from "./rightBar"; 
 ("use client");
 import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+
 
 const App = () => {
   const [profileData, setProfileData] = useState(null);
@@ -92,89 +63,33 @@ const App = () => {
   const suggestions = [
     {
       username: "pa.rshant9832",
-      subtitle:"followed by @tanish.tirpathi"
-    
-
+      subtitle: "followed by @tanish.tirpathi",
     },
     {
       username: "bike_crashes02",
-      subtitle:"followed by @tanish.tirpathi"
-
+      subtitle: "followed by @tanish.tirpathi",
     },
     {
       username: "artist_deepak_7",
-      subtitle:"followed by @tanish.tirpathi"
-
+      subtitle: "followed by @tanish.tirpathi",
     },
     {
       username: "radhaarya926",
-      subtitle:"followed by @tanish.tirpathi"
-
+      subtitle: "followed by @tanish.tirpathi",
     },
     {
       username: "weightlifter_uday",
-      subtitle:"followed by @tanish.tirpathi"
-
+      subtitle: "followed by @tanish.tirpathi",
     },
   ];
   return (
     <div className="flex h-screen w-screen font-sans text-white overflow-hidden">
-      {/* Left Sidebar */}
-      <aside className=" h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-r border-blue-900 shadow-xl">
-        <div className="mb-10 flex items-center gap-3">
-          <img src="./logo-tr.png" className=" w-14 h-14 " />
-          <span className="text-xl font-bold tracking-wide">Dashboard</span>
-        </div>
-        <nav className="flex-col justify-center items-center text-base">
-          {[
-            { icon: <Home size={18} />, label: "Home", path: "/main" },
-            {
-              icon: <Layers size={18} />,
-              label: "Explore",
-              path: "/explore",
-            },
-            { icon: <Code size={18} />, label: "Premium", path: "/premium" },
 
-            { icon: <User size={18} />, label: "Profile", path: "/profile" },
-            {
-              icon: <Crown size={18} />,
-              label: "about",
-              path: "/about  ",
-            },
-          ].map((item, index) => (
-            <a
-              key={index}
-              href={item.path}
-              className =''           >
-              {item.icon}
-              {item.label}
-            </a>
-          ))}
-            <Sheet>
-              <SheetTrigger className="text-white hover:text-blue-400 flex items-center gap-2 bg-transparent  ">
-                notification
-              </SheetTrigger>
-
-              <SheetContent className="w-full sm:w-[380px] bg-black-900 flex flex-col items-center overflow-auto py-8 px-6">
-                {[...Array(12)].map((_, index) => (
-                  <div
-                    key={index}
-                    className="w-full bg-gray-900 rounded-lg shadow-md p-4 flex items-center gap-3"
-                  >
-                    <BellPlus className="text-white w-6 h-6" />
-                    <div>
-                      <h3 className="text-white text-xs font-light">Rahul :</h3>
-                      <p className="text-gray-300 text-sm">
-                        posted a new video.
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </SheetContent>
-            </Sheet>
-        </nav>
-      </aside>
-      {/* Main Content */}
+       
+      <RightBar>
+  {/* children here if needed */}
+</RightBar>
+     
       <main className="flex-1 bg-black h-screen overflow-y-auto p-8">
         <div className="flex flex-row gap-4 overflow-x-auto mb-10">
           <div className="flex flex-row gap-4 overflow-x-auto mb-10 px-4">
@@ -213,8 +128,6 @@ const App = () => {
             <div key={i} className="w-140 p-6 rounded-xl " id="post">
               {/* User Info */}
               <div className="flex items-center gap-1 mb-4">
-               
-               
                 {profileData && (
                   <img
                     src={profileData.avatar_url}
@@ -222,12 +135,15 @@ const App = () => {
                     className="h-10 w-10 rounded-full border border-zinc-600"
                   />
                 )}
-               <div className="flex-col justify-start items-center "> <h2 className="text-l text-white font-bold">
-                  User name #{i + 1}
-                </h2>
-                <h4 className=" px-1 text-xs text-blue font-light ">
-                   4hr ago
-                </h4></div>
+                <div className="flex-col justify-start items-center ">
+                  {" "}
+                  <h2 className="text-l text-white font-bold">
+                    User name #{i + 1}
+                  </h2>
+                  <h4 className=" px-1 text-xs text-blue font-light ">
+                    4hr ago
+                  </h4>
+                </div>
               </div>
 
               <p className="text-sm text-zinc-300 leading-relaxed">
@@ -267,29 +183,33 @@ const App = () => {
         </section>
       </main>
       {/* Right Sidebar */}
-      <aside  className="w-[320px] h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-l border-blue-900 shadow-inner ">
+      <aside className="w-[320px] h-screen bg-gradient-to-b from-black via-blue-950 to-black p-6 border-l border-blue-900 shadow-inner ">
         <h2 className="text-xl font-light mb-4 text-white-400 flex justify-center items-center">
-        follow new people <User size={18} className="mt-1 mx-2" />
+          follow new people <User size={18} className="mt-1 mx-2" />
         </h2>
         <div className=" text-white w-full max-w-sm p-4 space-y-4">
-      {suggestions.map((user, index) => (
-        <div key={index} className="flex w-[250px]  bg-gray-900 rounded-lg px-3 py-2 items-center justify-between hover:bg-gray-800 trasition cursor-pointer">
-          <div className="flex items-center gap-3">
-            <img
-              src="./logo.png"
-              alt={user.username}
-              className="w-10 h-10 rounded-full object-cover"
-            />
-            <div className="text-sm">
-              <div className="font-medium">{user.username}</div>
-              <div className="text-gray-400 text-xs truncate">{user.subtitle}</div>
+          {suggestions.map((user, index) => (
+            <div
+              key={index}
+              className="flex w-[250px]  bg-gray-900 rounded-lg px-3 py-2 items-center justify-between hover:bg-gray-800 trasition cursor-pointer"
+            >
+              <div className="flex items-center gap-3">
+                <img
+                  src="./logo.png"
+                  alt={user.username}
+                  className="w-10 h-10 rounded-full object-cover"
+                />
+                <div className="text-sm">
+                  <div className="font-medium">{user.username}</div>
+                  <div className="text-gray-400 text-xs truncate">
+                    {user.subtitle}
+                  </div>
+                </div>
+                <User className="w-5 h-5" />
+              </div>
             </div>
-            <User className="w-5 h-5"/>
-          </div>
-
+          ))}
         </div>
-      ))}
-    </div>
         <div className="fixed bottom-10 right-10">
           <Button
             id="logout"
