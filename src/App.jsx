@@ -5,7 +5,7 @@ import Wrapper from "./components/wrapper";
 import Profile from "./components/profile";
 import HomePage from "./components/homePage";
 import Explore from "./components/explore/explore";
-
+import Premium from "./components/premium/premium";
 function App() {
   return (
     <Router>
@@ -16,6 +16,7 @@ function App() {
         <Route path="/main" element={<HomePage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/explore" element={<Explore />} />
+        <Route path="/premium" element={<Premium />} />
       </Routes>
     </Router>
   );
