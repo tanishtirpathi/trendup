@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { ShinyButton } from "./magicui/shiny-button";
-import { BorderBeam } from "./magicui/border-beam";
-import { ShimmerButton } from "./magicui/shimmer-button";
+import { ShinyButton } from "../components/magicui/shiny-button";
+import { BorderBeam } from "../components/magicui/border-beam";
+import { ShimmerButton } from "../components/magicui/shimmer-button";
 import './auth.css'
 export default function Login() {
   const [email, setEmail] = useState("");

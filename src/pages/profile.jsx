@@ -4,7 +4,7 @@ import { Home, Layers, Crown, User, Code } from "lucide-react";
 import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
 import "./style.css";
-import RightBar from "./rightBar";
+import RightBar from "../components/rightBar";
 
 function Profile() {
   const [loading, setLoading] = useState(true);

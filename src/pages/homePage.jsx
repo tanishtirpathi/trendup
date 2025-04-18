@@ -4,7 +4,7 @@ import { Plus, Share2, User, Heart, Repeat2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import RandomImage from "../pages/RandomImages";
       
-import RightBar from "./rightBar"; 
+import RightBar from "../components/rightBar";
 ("use client");
 import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import RightBar from "../rightBar"; // Adjust path as needed
+import RightBar from "../../components/rightBar";
 import "./preimum.css";
-import { BorderBeam } from "../magicui/border-beam";
+import { BorderBeam } from "../../components/magicui/border-beam";
 import {
   AlertDialog,
   AlertDialogAction,

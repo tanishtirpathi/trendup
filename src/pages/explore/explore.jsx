@@ -6,7 +6,7 @@ import "./explore.css";
 "use client";
 import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
-import RightBar from "../rightBar"; 
+import RightBar from "../../components/rightBar";
 
 
 function Explore() {

@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import Wrapper from "./components/wrapper";
-import Profile from "./components/profile";
-import HomePage from "./components/homePage";
-import Explore from "./components/explore/explore";
-import Premium from "./components/premium/premium";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Wrapper from "./pages/wrapper";
+import Profile from "./pages/profile";
+import HomePage from "./pages/homePage";
+import Explore from "./pages/explore/explore";
+import Premium from "./pages/premium/premium";
 function App() {
   return (
     <Router>

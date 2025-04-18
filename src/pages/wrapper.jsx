@@ -1,9 +1,9 @@
 import React from "react";
-import TextPressure from "./animation/TextPressure";
-import CountUp from "./animation/counup";
-import { Button } from "@/components/ui/button";
-import { CoolMode } from "./magicui/cool-mode";
-import { InteractiveHoverButton } from "./magicui/interactive-hover-button";
+import TextPressure from "../components/animation/TextPressure";
+import CountUp from "../components/animation/counup";
+import { Button } from "../components/ui/button";
+import { CoolMode } from "../components/magicui/cool-mode";
+import { InteractiveHoverButton } from "../components/magicui/interactive-hover-button";
 import "./wrapper.css";
 function Wrapper() {
   return (
