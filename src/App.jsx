@@ -6,14 +6,17 @@ import Profile from "./pages/profile";
 import HomePage from "./pages/homePage";
 import Explore from "./pages/explore/explore";
 import Premium from "./pages/premium/premium";
+import AboutSection from "./pages/AboutSection";
 function App() {
   return (
     <Router>
       <Routes>
+        
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Wrapper />} />
         <Route path="/main" element={<HomePage />} />
+        <Route path="/about" element={<AboutSection />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/premium" element={<Premium />} />
