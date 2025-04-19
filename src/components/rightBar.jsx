@@ -40,7 +40,7 @@ function RightBar() {
           ))}
           <Sheet>
             <SheetTrigger className="text-white hover:text-blue-400 flex items-center gap-2 bg-transparent  ">
-              notificatin
+              notification
             </SheetTrigger>
 
             <SheetContent className="w-full sm:w-[380px] bg-black-900 flex flex-col items-center overflow-auto py-8 px-6">
