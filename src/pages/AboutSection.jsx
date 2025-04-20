@@ -9,6 +9,13 @@ import {
 import RightBar from "../components/rightBar";
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 
+const handleclick =()=>{
+
+  setTimeout(() => {
+    console.log("user logout ")
+    window.location.href = "/login";
+  }, 500); 
+}
 function AboutSection() {
   return (
     <div className="flex h-screen w-screen font-sans text-white overflow-hidden">
@@ -36,7 +43,7 @@ function AboutSection() {
             <p className="text-md text-gray-400 max-w-lg">
               Our mission is to create a distraction-free social media platform.
             </p>
-            <InteractiveHoverButton className="text-black font-semibold px-6 py-2 mt-2">
+            <InteractiveHoverButton className="text-black font-semibold px-6 py-2 mt-2" onClick={handleclick} >
               Start with us
             </InteractiveHoverButton>
           </div>
