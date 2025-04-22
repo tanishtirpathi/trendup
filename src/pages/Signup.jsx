@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { BorderBeam } from "../components/magicui/border-beam";
 import { ShimmerButton } from "../components/magicui/shimmer-button";
 import { ShinyButton } from "../components/magicui/shiny-button";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "./firebase-config";
 import './auth.css'
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -10,7 +12,18 @@ export default function Signup() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    window.location.href = "/main";
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      // User registered successfully; you can access userCredential.user
+      console.log("User signed up:", userCredential.user);
+      window.location.href = "/main";
+    } catch (error) {
+      console.error("Error signing up:", error.message);
+    }
   };
   const handleLogin = () => {
     window.location.href = "/login";
