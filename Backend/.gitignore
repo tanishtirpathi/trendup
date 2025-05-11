@@ -70,7 +70,8 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+.envgit rm -r --cached node_modules
+
 .env.test
 .env.production
 
