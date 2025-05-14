@@ -1,8 +1,16 @@
+import { verifyJWT } from "../middlewares/auth.middleware.js";
 import express from "express";
-import { registerFunction,loginUser } from "../controllers/auth.controller.js";
-const router= express.Router()
+import { Router } from "express";
 
-router.post('/signup', registerFunction)
-router.post('/login', loginUser)
+import {
+  registerFunction,
+  loginUser,
+  logoutUser,
+} from "../controllers/auth.controller.js";
+const router = express.Router();
 
-export default router
+
+router.route("/logout").post(verifyJWT,logoutUser);
+router.route("/login").post(loginUser);
+router.route("/signup").post(registerFunction);
+export default router;

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const userSchema = mongoose.Schema(
   {
@@ -30,6 +31,9 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "password is required "],
     },
+    refreshtoken: {
+      type: String,
+    },
     about: String,
     tivesin: String,
     worksAt: String,
@@ -52,8 +56,35 @@ userSchema.pre("save", async function (next) {
 userSchema.methods.isPasswordCorrect = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
-export const User = mongoose.model("User", userSchema,"users");
-    // avatar: {
-    //   type: String,
-    //   required: true,
-    // },
+
+userSchema.methods.generateAccesstoken = async function () {
+  return jwt.sign(
+    {
+      _id: this._id,
+      email: this.email,
+      username: this.username,
+      fullName: this.fullName,
+    },
+    process.env.ACCESS_TOKEN_SECRET,
+    {
+      expiresIn: process.env.ACCESS_TOKEN_EXPIRY,
+    }
+  );
+};
+
+userSchema.methods.generateRefreshtoken = async function () {
+  return jwt.sign(
+    {
+      _id: this._id,
+    },
+    process.env.REFRESH_TOKEN_SECRET,
+    {
+      expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
+    }
+  );
+};
+export const User = mongoose.model("User", userSchema, "users");
+// avatar: {
+//   type: String,
+//   required: true,
+// },
