@@ -26,7 +26,9 @@ const generateAccessAndRefreshTokens = async (userId) => {
 // REGISTER FUNCTION
 const registerFunction = async (req, res) => {
   const { username, password, fullname, email } = req.body;
-
+  if (!username || !password || !fullname || !email) {
+    return res.status(400).json({ message: "All fields are required." });
+  }
   try {
     const newUser = new User({ username, password, fullname, email });
     await newUser.save();

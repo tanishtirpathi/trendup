@@ -10,7 +10,7 @@ import {
 const router = express.Router();
 
 
-router.route("/logout").post(verifyJWT,logoutUser);
+router.route("/logout").get(verifyJWT,logoutUser);
 router.route("/login").post(loginUser);
 router.route("/signup").post(registerFunction);
 export default router;

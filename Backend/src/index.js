@@ -7,10 +7,7 @@ dotenv. config({
 })
 
 connectDB()
-  .then(() =>
-    
-    app.listen(process.env.PORT, () => console.log("listining the port at 7000"))
-  ).catch((err)=>{
-  console.log("MONGO DB connnection failed bro now what to do", err)
-});
+
+app.listen(process.env.PORT, () => console.log("listining the port at 7000"))
+
 app.use('/auth', authRoutes);

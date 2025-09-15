@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
-    "git-filter-repo": "^0.0.30"
-  }
-}
