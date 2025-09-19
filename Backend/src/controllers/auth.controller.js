@@ -1,9 +1,7 @@
-import { User } from "../modals/user.modal.js";    
+import { User } from "../modals/user.modal.js";
 import { Apierror } from "../utils/APIerror.js";
 import { APIresp } from "../utils/APIresp.js"; // Assuming you have this
 import jwt from "jsonwebtoken"; // Required for token generation
-
-
 
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
@@ -23,12 +21,19 @@ const generateAccessAndRefreshTokens = async (userId) => {
     );
   }
 };
-// REGISTER FUNCTION
 const registerFunction = async (req, res) => {
   const { username, password, fullname, email } = req.body;
   if (!username || !password || !fullname || !email) {
-    return res.status(400).json({ message: "All fields are required." });
-  }
+    console.log("something is missing fill the all filed")
+    return res.status(400).json({ message: "All fields are required." });
+  }
+  const user = await User.findOne({
+    $or: [{ username }, { email }],
+  });
+
+  if (user) {
+    throw new Apierror(404, "User already not exist");
+  }
   try {
     const newUser = new User({ username, password, fullname, email });
     await newUser.save();
@@ -38,7 +43,7 @@ const registerFunction = async (req, res) => {
   }
 };
 const loginUser = async (req, res) => {
-// LOGIN FUNCTIONconst loginUser = AsyncHanddler(async (req, res) => {
+  // LOGIN FUNCTIONconst loginUser = AsyncHanddler(async (req, res) => {
   // * request body se data le aao
   // * username or emails se login
   // * find the user
@@ -119,5 +124,21 @@ const logoutUser = async (req, res) => {
     .clearCookie("refreshToken", options)
     .json(new APIresp(200, {}, "User logged out successfully"));
 };
-
-export { registerFunction, loginUser ,logoutUser};
+const getme = async (req, res) => {
+  if (!req.user) {
+    console.log("not the autherized user ");
+    return res.status(401).json({ message: "not autherized" });
+  }
+  res.status(200).json(
+      new APIresp(
+        200,
+        {
+          user:req.user,
+          accessToken:req.accessToken,
+          refreshToken:req.refreshToken,
+        },
+        "User logged in successfully"
+      )
+    );
+};
+export { registerFunction, loginUser, logoutUser, getme };
