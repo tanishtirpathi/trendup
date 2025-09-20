@@ -48,5 +48,38 @@ const getAllPost = async (req, res) => {
     return res.status(500).json({ message: "Error in getting all posts" });
   }
 };
+const deletePost = async (req, res) => {
+  try {
+    const postid = req.params.id;
+    const userId = req.user.id;
 
-export { createPost, getAllPost };
+    if (!postid) {
+      console.log(`didn't get the post `);
+      return res
+        .status(400)
+        .json({ message: "didn't get the post id properly" });
+    }
+    const post = await Post.findById(postid);
+    if (!post) return res.status(404).json({ message: "Post not found" });
+    if (post.user.toString() !== userId) {
+      return res
+        .status(403)
+        .json({ message: "Not authorized to delete this post" });
+    }
+
+    const deletePost = await Post.findByIdAndDelete(postid);
+    if (!deletePost) {
+      console.log(`error in deleting the post `);
+      return res.status(400).json({ message: "didn't dinf  the post " });
+    }
+
+    res.status(200).json({ message: "Post deleted successfully" });
+  } catch (error) {
+    res.status(500).json({
+      message: "error in delteing the post error ::- ",
+      error: error.message,
+    });
+  }
+};
+
+export { createPost, getAllPost, deletePost };
