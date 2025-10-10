@@ -1,84 +1,67 @@
 import { Post } from "../modals/post.modal.js";
+import { Apierror } from "../utils/APIerror.js";
 
 const createPost = async (req, res) => {
-  //* check user auterhsied hai ki nai
-  //^ check user ne linkha hai ya nai
-  //!create the post
-  //? save the post
   const { text, image } = req.body;
+
+  if (!text && !image) {
+    return res.status(400).json({ message: "Post content is required" });
+  }
+
   try {
-    if (!text) {
-      console.log("something should have in post ");
-      return res.status(500).json({ message: error.message });
-    }
     const newPost = new Post({
-      user: req.user.id,
+      user: req.user._id,
       text,
       image,
     });
-    if (!newPost) {
-      console.log("error in creating new post");
-    }
+
     await newPost.save();
+
     res.status(201).json({
-      newPost,
-      message: "post created",
+      message: "Post created successfully",
+      post: newPost,
     });
   } catch (error) {
-    console.log("something error in starting point of post", error);
-    return res.status(500).json({
-      message: `something error in starting point of post ${error.message} `,
+    res.status(500).json({
+      message: "Error creating post",
+      error: error.message,
     });
   }
 };
+
 const getAllPost = async (req, res) => {
   try {
     const posts = await Post.find()
-      .populate("user", "username ")
+      .populate("user", "username fullname avatar")
+      .populate({
+        path: "comments",
+        populate: { path: "user", select: "username avatar" },
+      })
       .sort({ createdAt: -1 });
-    if (!posts || posts.length === 0) {
+
+    if (!posts.length)
       return res.status(200).json({ message: "No posts found" });
-    }
-    return res.status(200).json({
-      message: "Here are all posts",
-      posts,
-    });
+
+    res.status(200).json({ message: "Posts fetched", posts });
   } catch (error) {
-    console.error("Error in getting all posts:", error);
-    return res.status(500).json({ message: "Error in getting all posts" });
+    res.status(500).json({ message: "Error fetching posts", error });
   }
 };
+
 const deletePost = async (req, res) => {
   try {
-    const postid = req.params.id;
-    const userId = req.user.id;
+    const { id } = req.params;
+    const post = await Post.findById(id);
 
-    if (!postid) {
-      console.log(`didn't get the post `);
-      return res
-        .status(400)
-        .json({ message: "didn't get the post id properly" });
-    }
-    const post = await Post.findById(postid);
     if (!post) return res.status(404).json({ message: "Post not found" });
-    if (post.user.toString() !== userId) {
-      return res
-        .status(403)
-        .json({ message: "Not authorized to delete this post" });
+    if (post.user.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ message: "Unauthorized action" });
     }
 
-    const deletePost = await Post.findByIdAndDelete(postid);
-    if (!deletePost) {
-      console.log(`error in deleting the post `);
-      return res.status(400).json({ message: "didn't dinf  the post " });
-    }
-
+    await Post.findByIdAndDelete(id);
     res.status(200).json({ message: "Post deleted successfully" });
   } catch (error) {
-    res.status(500).json({
-      message: "error in delteing the post error ::- ",
-      error: error.message,
-    });
+    res.status(500).json({ message: "Error deleting post", error });
   }
 };
 

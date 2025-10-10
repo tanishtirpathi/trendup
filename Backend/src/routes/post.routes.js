@@ -1,6 +1,5 @@
-import { verifyJWT } from "../middlewares/auth.middleware.js";
 import express from "express";
-import { Router } from "express";
+import { verifyJWT } from "../middlewares/auth.middleware.js";
 import {
   createPost,
   getAllPost,
@@ -9,7 +8,9 @@ import {
 
 const router = express.Router();
 
-router.route("/createpost").post(verifyJWT, createPost);
-router.route("/allpost").get(verifyJWT, getAllPost);
-router.route("/delete/:id").delete(verifyJWT, deletePost);
+// Post routes
+router.post("/", verifyJWT, createPost);           // Create a post
+router.get("/", verifyJWT, getAllPost);            // Get all posts
+router.delete("/:id", verifyJWT, deletePost);      // Delete a specific post
+
 export default router;

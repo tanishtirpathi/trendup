@@ -1,13 +1,13 @@
 import { User } from "../modals/user.modal.js";
 import { Apierror } from "../utils/APIerror.js";
-import { APIresp } from "../utils/APIresp.js"; // Assuming you have this
-import jwt from "jsonwebtoken"; // Required for token generation
+import { APIresp } from "../utils/APIresp.js";
+import jwt from "jsonwebtoken";
 
 const generateAccessAndRefreshTokens = async (userId) => {
   try {
     const user = await User.findById(userId);
-    const accessToken = await user.generateAccesstoken();
-    const refreshToken = await user.generateRefreshtoken();
+    const accessToken = user.generateAccessToken();
+    const refreshToken = user.generateRefreshToken();
 
     user.refreshToken = refreshToken;
     await user.save({ validateBeforeSave: false });
@@ -16,129 +16,101 @@ const generateAccessAndRefreshTokens = async (userId) => {
   } catch (error) {
     throw new Apierror(
       500,
-      error,
-      "Something went wrong while generating access and refresh tokens"
+      "Error generating access and refresh tokens",
+      error.message
     );
   }
 };
+
+// 🔹 REGISTER
 const registerFunction = async (req, res) => {
   const { username, password, fullname, email } = req.body;
+
   if (!username || !password || !fullname || !email) {
-    console.log("something is missing fill the all filed")
     return res.status(400).json({ message: "All fields are required." });
   }
-  const user = await User.findOne({
+
+  const existingUser = await User.findOne({
     $or: [{ username }, { email }],
   });
 
-  if (user) {
-    throw new Apierror(404, "User already not exist");
+  if (existingUser) {
+    throw new Apierror(409, "User already exists");
   }
+
   try {
     const newUser = new User({ username, password, fullname, email });
     await newUser.save();
-    res.status(200).json(newUser);
+
+    const safeUser = newUser.toObject();
+    delete safeUser.password;
+
+    return res
+      .status(201)
+      .json(new APIresp(201, safeUser, "User registered successfully"));
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 };
-const loginUser = async (req, res) => {
-  // LOGIN FUNCTIONconst loginUser = AsyncHanddler(async (req, res) => {
-  // * request body se data le aao
-  // * username or emails se login
-  // * find the user
-  // * password check
-  // * access and refresh token generate and give to user
-  // * send through secure cookie
 
-  const { username, email, password } = req.body || {};
+// 🔹 LOGIN
+const loginUser = async (req, res) => {
+  const { username, email, password } = req.body;
 
   if (!username && !email) {
     throw new Apierror(400, "Username or email is required");
   }
 
-  const user = await User.findOne({
-    $or: [{ username }, { email }],
-  });
-
-  if (!user) {
-    throw new Apierror(404, "User does not exist");
-  }
+  const user = await User.findOne({ $or: [{ username }, { email }] });
+  if (!user) throw new Apierror(404, "User not found");
 
   const isPasswordCorrect = await user.isPasswordCorrect(password);
-
-  if (!isPasswordCorrect) {
-    throw new Apierror(401, "Invalid credentials");
-  }
+  if (!isPasswordCorrect) throw new Apierror(401, "Invalid credentials");
 
   const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
     user._id
   );
 
-  const loggedInUser = await User.findById(user._id).select(
+  const safeUser = await User.findById(user._id).select(
     "-password -refreshToken"
   );
 
-  const options = {
-    httpOnly: true,
-    secure: true,
-  };
-
-  return res
-    .status(200)
-    .cookie("accessToken", accessToken, options)
-    .cookie("refreshToken", refreshToken, options)
-    .json(
-      new APIresp(
-        200,
-        {
-          user: loggedInUser,
-          accessToken,
-          refreshToken,
-        },
-        "User logged in successfully"
-      )
-    );
+  return res.status(200).json(
+    new APIresp(
+      200,
+      {
+        user: safeUser,
+        accessToken,
+        refreshToken,
+      },
+      "Login successful"
+    )
+  );
 };
+
+// 🔹 LOGOUT
 const logoutUser = async (req, res) => {
   await User.findByIdAndUpdate(
     req.user._id,
-    {
-      $set: {
-        refreshToken: undefined,
-      },
-    },
-    {
-      new: true,
-    }
+    { $unset: { refreshToken: "" } },
+    { new: true }
   );
-
-  const options = {
-    httpOnly: true,
-    secure: true,
-  };
 
   return res
     .status(200)
-    .clearCookie("accessToken", options)
-    .clearCookie("refreshToken", options)
-    .json(new APIresp(200, {}, "User logged out successfully"));
+    .clearCookie("accessToken")
+    .clearCookie("refreshToken")
+    .json(new APIresp(200, {}, "Logout successful"));
 };
+
+// 🔹 GET CURRENT USER
 const getme = async (req, res) => {
-  if (!req.user) {
-    console.log("not the autherized user ");
-    return res.status(401).json({ message: "not autherized" });
-  }
+  if (!req.user)
+    return res.status(401).json({ message: "Unauthorized access" });
+
   res.status(200).json(
-      new APIresp(
-        200,
-        {
-          user:req.user,
-          accessToken:req.accessToken,
-          refreshToken:req.refreshToken,
-        },
-        "User logged in successfully"
-      )
-    );
+    new APIresp(200, { user: req.user }, "Authenticated user fetched")
+  );
 };
+
 export { registerFunction, loginUser, logoutUser, getme };
