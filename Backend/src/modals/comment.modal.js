@@ -1,7 +1,12 @@
 import mongoose from "mongoose";
 
-const postSchema = new mongoose.Schema(
+const commentSchema = new mongoose.Schema(
   {
+    post: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Post",
+      required: true,
+    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -9,12 +14,9 @@ const postSchema = new mongoose.Schema(
     },
     text: {
       type: String,
-      maxlength: 500,
+      required: true,
+      maxlength: 300,
       trim: true,
-    },
-    image: {
-      type: String, // image URL or local path
-      default: "",
     },
     likes: [
       {
@@ -22,19 +24,13 @@ const postSchema = new mongoose.Schema(
         ref: "User",
       },
     ],
-    comments: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Comment",
-      },
-    ],
   },
   { timestamps: true }
 );
 
 // Optional: virtual for like count
-postSchema.virtual("likeCount").get(function () {
+commentSchema.virtual("likeCount").get(function () {
   return this.likes.length;
 });
 
-export const Post = mongoose.model("Post", postSchema, "posts");
+export const Comment = mongoose.model("Comment", commentSchema, "comments");
