@@ -1,6 +1,6 @@
 import { Post } from "../modals/post.modal.js";
 import { Apierror } from "../utils/APIerror.js";
-
+import {Comment} from "../modals/comment.modal.js"
 const createPost = async (req, res) => {
   const { text, image } = req.body;
 
@@ -34,7 +34,7 @@ const getAllPost = async (req, res) => {
     const posts = await Post.find()
       .populate("user", "username fullname avatar")
       .populate({
-        path: "comments",
+        path: "comment",
         populate: { path: "user", select: "username avatar" },
       })
       .sort({ createdAt: -1 });
@@ -44,6 +44,7 @@ const getAllPost = async (req, res) => {
 
     res.status(200).json({ message: "Posts fetched", posts });
   } catch (error) {
+    console.log(`hey this is the error : ${error}`)
     res.status(500).json({ message: "Error fetching posts", error });
   }
 };
