@@ -76,5 +76,16 @@ const unfollowUser = async (req, res) => {
     res.status(500).json({ message: "Error unfollowing user", error });
   }
 };
+// 🔹 Get all users (for discovery or admin)
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find()
+      .select("-password -refreshToken")
+      .populate("followers following", "username fullname avatar");
+    res.status(200).json(new APIresp(200, users, "All users fetched successfully"));
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching users", error });
+  }
+};
 
-export { getUserProfile, followUser, unfollowUser };
+export { getAllUsers , getUserProfile, followUser, unfollowUser };
