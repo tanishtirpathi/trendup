@@ -1,5 +1,5 @@
-import { Comment } from "../modals/comment.model.js";
-import { Post } from "../modals/post.model.js";
+import { Comment } from "../modals/comment.modal.js";
+import { Post } from "../modals/post.modal.js";
 import { Apierror } from "../utils/APIerror.js";
 import { APIresp } from "../utils/APIresp.js";
 
@@ -22,7 +22,7 @@ const addComment = async (req, res) => {
 
     await newComment.save();
 
-    post.comments.push(newComment._id);
+    post.comment.push(newComment._id);
     await post.save();
 
     res.status(201).json(
@@ -32,7 +32,6 @@ const addComment = async (req, res) => {
     res.status(500).json({ message: "Error adding comment", error });
   }
 };
-
 // 🔹 Delete Comment
 const deleteComment = async (req, res) => {
   const { commentId } = req.params;
@@ -58,9 +57,8 @@ const deleteComment = async (req, res) => {
     res.status(500).json({ message: "Error deleting comment", error });
   }
 };
-
 // 🔹 Get Comments of a Post
-const getCommentsByPost = async (req, res) => {
+const getCommentsForPost = async (req, res) => {
   const { postId } = req.params;
 
   try {
@@ -74,4 +72,4 @@ const getCommentsByPost = async (req, res) => {
   }
 };
 
-export { addComment, deleteComment, getCommentsByPost };
+export { addComment, deleteComment, getCommentsForPost };
